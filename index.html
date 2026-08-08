@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Island Water Mystery | Stories in Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+:root {
+  --ocean-deep: #17324D;
+  --lagoon: #287F83;
+  --lagoon-dark: #1E6468;
+  --sea-glass: #BFE3DE;
+  --sea-glass-light: #E8F4F1;
+  --sunlight: #F2B84B;
+  --sunlight-dark: #D99B25;
+  --coral: #DF765E;
+  --sand: #F5E9D6;
+  --sand-light: #FBF5EA;
+  --foam: #FFFDF8;
+  --ink: #263746;
+  --muted: #667784;
+  --border: #D5DEDF;
+  --success: #4F875E;
+  --error: #B54E4E;
+  --disabled: #A9B2B8;
+
+  --content-width: 900px;
+  --shell-width: 1400px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 4px 14px rgba(23, 50, 77, 0.08);
+  --shadow-card: 0 8px 28px rgba(23, 50, 77, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 18px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--sea-glass-light);
+  color: var(--ink);
+  font-family: 'Figtree', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, .display-font {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 400;
+  color: var(--ocean-deep);
+  margin: 0;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+p { margin: 0 0 1em 0; line-height: 1.6; }
+p:last-child { margin-bottom: 0; }
+
+img, svg { max-width: 100%; display: block; }
+
+button {
+  font-family: 'Figtree', sans-serif;
+  cursor: pointer;
+}
+
+a { color: var(--lagoon-dark); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ocean-deep);
+  color: var(--foam);
+  padding: 12px 18px;
+  border-radius: 0 0 10px 0;
+  z-index: 500;
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sunlight-dark);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Wider container for the header and tracker only — matches the
+   Stories in Science shell convention (header/tracker run wider than
+   the reading column). */
+.wrap-shell {
+  width: 100%;
+  max-width: var(--shell-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   LESSON SHELL / HEADER
+   ========================================================================== */
+.lesson-header {
+  background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--lagoon) 100%);
+  border-bottom: 3px solid var(--sunlight);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+
+.header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 0 16px 0;
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.series-pill {
+  background: var(--sunlight);
+  color: var(--ocean-deep);
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  padding: 7px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.identity-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.identity-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,.78);
+}
+
+.identity-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1.15rem;
+  color: var(--foam);
+  line-height: 1.25;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.32);
+  color: var(--foam);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 13px;
+  border-radius: 999px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+button.toolbar-item:hover {
+  background: rgba(255,255,255,.24);
+}
+
+.toolbar-item-danger {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--foam);
+}
+button.toolbar-item-danger:hover {
+  background: #c9634c;
+  border-color: #c9634c;
+}
+
+/* Header stays visible from the launch screen; only its buttons and the
+   tracker hide until the student leaves the launch page. */
+body.launch-mode .toolbar,
+body.launch-mode #progress-strip { display: none; }
+
+/* ==========================================================================
+   PROGRESS STRIP
+   ========================================================================== */
+.progress-strip {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 12px auto 14px auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+}
+
+.progress-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+  background: var(--foam);
+  border: 2px solid var(--border);
+  border-radius: 11px;
+  padding: 8px 9px;
+}
+
+.progress-stage.active {
+  border-color: var(--sunlight-dark);
+  background: #fff8ea;
+}
+
+.progress-connector { display: none; }
+
+.stage-circle {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--sea-glass-light);
+  border: none;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.76rem;
+}
+
+.progress-stage.active .stage-circle {
+  background: var(--sunlight);
+  border-color: var(--sunlight-dark);
+  color: var(--ocean-deep);
+}
+
+.progress-stage.complete .stage-circle {
+  background: var(--lagoon);
+  border-color: var(--lagoon-dark);
+  color: var(--foam);
+}
+
+.stage-text { min-width: 0; }
+
+.stage-title {
+  font-weight: 800;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: var(--ocean-deep);
+}
+
+.progress-stage:not(.active):not(.complete) .stage-title {
+  color: var(--muted);
+}
+
+.stage-sub {
+  font-size: 0.68rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   MAIN VIEW CONTAINER
+   ========================================================================== */
+main {
+  flex: 1;
+  width: 100%;
+}
+
+.view {
+  padding: 28px 0 40px 0;
+}
+
+.view[hidden] { display: none !important; }
+
+.fade-in {
+  animation: fadeSlideIn 0.4s ease both;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   HOOK PAGE
+   ========================================================================== */
+.hook-card {
+  background: linear-gradient(135deg, #17324D 0%, #287F83 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  color: var(--foam);
+  padding: 34px 36px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.hook-media {
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  margin-bottom: 6px;
+}
+
+.hook-media .lesson-image,
+.hook-media .image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.hook-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.hook-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--sea-glass);
+  text-transform: uppercase;
+}
+
+.hook-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+  color: var(--foam);
+  line-height: 1.15;
+}
+
+.hook-subtitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sunlight);
+  margin-top: -6px;
+}
+
+.hook-sub {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--sea-glass-light);
+  max-width: 52ch;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 14px 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  min-height: 48px;
+}
+
+.btn-primary {
+  background: var(--sunlight);
+  color: var(--ocean-deep);
+  box-shadow: 0 3px 0 var(--sunlight-dark);
+}
+.btn-primary:hover:not(:disabled) {
+  background: #f4c463;
+  transform: translateY(-1px);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--sunlight-dark);
+}
+
+.btn-outline {
+  background: var(--foam);
+  border: 2px solid var(--border);
+  color: var(--ink);
+}
+.btn-outline:hover { border-color: var(--lagoon); }
+
+.btn-danger {
+  background: var(--error);
+  color: var(--foam);
+}
+.btn-danger:hover { background: #9c3f3f; }
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   DRAWERS — Glossary (left) and Journal (right). Slide-in panels, distinct
+   from the centered Restart modal above.
+   ========================================================================== */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 50, 77, 0.45);
+  z-index: 110;
+  display: none;
+  align-items: stretch;
+}
+.drawer-overlay.open { display: flex; }
+.drawer-overlay-left { justify-content: flex-start; }
+.drawer-overlay-right { justify-content: flex-end; }
+.drawer-overlay[hidden] { display: none !important; }
+
+.drawer-box {
+  width: min(420px, 92vw);
+  background: var(--foam);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  animation: drawer-in-left 0.2s ease;
+}
+.drawer-overlay-right .drawer-box { animation-name: drawer-in-right; }
+@keyframes drawer-in-left { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@keyframes drawer-in-right { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--lagoon);
+  color: var(--foam);
+}
+.drawer-title { margin: 0; font-size: 1.15rem; }
+.drawer-close {
+  background: rgba(255,255,255,.18);
+  border: none;
+  color: var(--foam);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.drawer-close:hover { background: rgba(255,255,255,.3); }
+.drawer-body { padding: 18px 20px; overflow-y: auto; flex: 1; }
+.drawer-body .glossary-term:first-of-type { border-top: none; padding-top: 0; }
+.drawer-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.drawer-footer-note { font-size: 0.8rem; color: var(--muted); }
+
+@media (max-width: 480px) {
+  .drawer-box { width: 100vw; }
+}
+.btn-primary:disabled {
+  background: var(--disabled);
+  color: var(--foam);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--foam);
+  color: var(--ocean-deep);
+  border: 2px solid var(--border);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--sea-glass-light);
+  border-color: var(--lagoon);
+}
+
+.hook-cta { margin-top: 10px; }
+
+/* ==========================================================================
+   ACCORDION — LEARNING OBJECTIVES
+   ========================================================================== */
+.accordion {
+  margin-top: 22px;
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.accordion-trigger {
+  width: 100%;
+  background: var(--foam);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--ocean-deep);
+  text-align: left;
+}
+.accordion-trigger:hover { background: var(--sea-glass-light); }
+
+.accordion-icon {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sea-glass-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  font-size: 0.9rem;
+  color: var(--lagoon-dark);
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-panel {
+  padding: 0 22px 22px 22px;
+  display: grid;
+  gap: 16px;
+}
+
+.accordion-panel[hidden] { display: none; }
+
+.objective-block h3 {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lagoon-dark);
+  margin-bottom: 6px;
+}
+
+.standard-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  background: var(--sand-light);
+  border: 1px solid var(--sunlight-dark);
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.goal-list {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.7;
+}
+.goal-list li { margin-bottom: 4px; }
+
+.boundary-note {
+  background: var(--sea-glass-light);
+  border-left: 3px solid var(--lagoon);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.lesson-footer {
+  padding: 30px 0 40px 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   NARRATIVE PAGES
+   ========================================================================== */
+.narrative-page {
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 34px 38px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.narrative-page.image-right {
+  flex-direction: row-reverse;
+}
+
+/* Pages 2 and 3 keep the image top-aligned with just a small downward
+   nudge rather than full vertical centering (their text columns run
+   noticeably longer than the image, so centering pulled it too far down). */
+#view-narrative-2 .narrative-page,
+#view-narrative-3 .narrative-page {
+  align-items: flex-start;
+}
+
+#view-narrative-2 .narrative-media,
+#view-narrative-3 .narrative-media {
+  margin-top: 22px;
+}
+
+.narrative-media {
+  flex: 0 0 auto;
+  width: 200px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: var(--sea-glass-light);
+}
+
+.narrative-media .lesson-image,
+.narrative-media .image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.narrative-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.narrative-heading {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+}
+
+.narrative-text {
+  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.book-excerpt {
+  background: var(--sand-light);
+  border: 1px solid var(--sunlight-dark);
+  border-left: 5px solid var(--sunlight);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  font-size: 1rem;
+  color: var(--ink);
+  position: relative;
+}
+
+.book-excerpt::before {
+  content: "From the book";
+  display: block;
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 0.78rem;
+  color: var(--sunlight-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.book-excerpt p {
+  font-style: italic;
+}
+
+/* ==========================================================================
+   DIALOGUE LINES — gives spoken lines clearer rhythm and separation from
+   plain narration without printed speaker-name labels. Two alternating
+   treatments (d-1 / d-2) are applied by hand to each quoted paragraph so
+   back-and-forth exchanges read with a visual back-and-forth of their own.
+   ========================================================================== */
+.narrative-text p.dialogue {
+  margin: 0.9em 0;
+  padding: 8px 8px 8px 18px;
+  border-left: 3px solid var(--sea-glass);
+  font-weight: 600;
+}
+
+.narrative-text p.dialogue.d-2 {
+  margin-left: 22px;
+  border-left-color: var(--sunlight);
+}
+
+@media (max-width: 560px) {
+  .narrative-text p.dialogue.d-2 {
+    margin-left: 10px;
+  }
+}
+
+/* ==========================================================================
+   STANDOUT LINE — reserved for the one punch-beat per page that should
+   land differently from the surrounding prose (a realization, a turn).
+   Used sparingly, never as a substitute for narrative pacing.
+   ========================================================================== */
+.standout-line {
+  background: var(--sea-glass-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 4px 0;
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: var(--lagoon-dark);
+  text-align: center;
+}
+
+/* ==========================================================================
+   NARRATIVE + INTERACTIVE BLOCK — wraps a narrative intro, an embedded
+   interactive storybook, and a narrative close inside one card.
+   ========================================================================== */
+.narrative-page-block {
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.narrative-intro-grid {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 34px 38px 10px 38px;
+}
+
+.narrative-close-wrap {
+  padding: 8px 38px 6px 38px;
+}
+
+.interactive-section {
+  padding: 6px 38px 6px 38px;
+}
+
+.book-interactive-shell {
+  position: relative;
+  border-radius: var(--radius-md);
+}
+
+.book-interactive-frame {
+  width: 100%;
+  height: 620px;
+  border: none;
+  border-radius: var(--radius-md);
+  display: block;
+  background: var(--sea-glass-light);
+  overflow: hidden;
+}
+
+.standalone-nav-row {
+  padding: 10px 38px 30px 38px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   SUBTLE PROMPT — low-pressure thinking / noticing line
+   (retained for potential future use; not used to summarize observations)
+   ========================================================================== */
+.subtle-prompt {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1rem;
+  color: var(--lagoon-dark);
+  padding: 12px 16px;
+  border-left: 3px solid var(--sea-glass);
+  background: transparent;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   JOURNAL CARD — open-ended response (Page 5)
+   ========================================================================== */
+.journal-card {
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--lagoon);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+
+.journal-heading {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lagoon-dark);
+  margin-bottom: 8px;
+}
+
+.journal-prompt {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1.05rem;
+  color: var(--ocean-deep);
+  margin-bottom: 6px;
+  line-height: 1.4;
+  display: block;
+}
+
+.journal-helper {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.journal-textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: 'Figtree', sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--sea-glass-light);
+  line-height: 1.55;
+}
+
+.journal-textarea:focus {
+  border-color: var(--lagoon);
+  background: var(--foam);
+}
+
+.journal-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+  min-height: 20px;
+}
+
+.saved-indicator {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--success);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.saved-indicator.show { opacity: 1; }
+
+/* ==========================================================================
+   PAGE NAVIGATION
+   ========================================================================== */
+.page-nav-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   IMAGE PLACEHOLDER (fallback for missing image assets)
+   ========================================================================== */
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--sea-glass-light),
+    var(--sea-glass-light) 12px,
+    var(--sea-glass) 12px,
+    var(--sea-glass) 24px
+  );
+  border: 1px dashed var(--lagoon);
+  color: var(--lagoon-dark);
+  text-align: center;
+  padding: 20px;
+}
+
+.image-placeholder .ph-icon {
+  font-size: 1.8rem;
+}
+
+.image-placeholder .ph-filename {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  background: rgba(255,255,255,0.6);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   GLOSSARY MODAL
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 50, 77, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-overlay[hidden] { display: none; }
+
+.modal-box {
+  background: var(--foam);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 28px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--sea-glass-light);
+  border: 1px solid var(--border);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover { background: var(--sea-glass); }
+
+.modal-title {
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  padding-right: 30px;
+}
+
+.glossary-term {
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+}
+.glossary-term:first-of-type { border-top: none; padding-top: 0; }
+
+.glossary-term dt {
+  font-weight: 800;
+  color: var(--ocean-deep);
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1.02rem;
+}
+
+.glossary-term dd {
+  margin: 4px 0 0 0;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   TOAST / SMALL MESSAGE
+   ========================================================================== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ocean-deep);
+  color: var(--foam);
+  padding: 14px 22px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  font-weight: 700;
+  font-size: 0.92rem;
+  max-width: 90vw;
+  text-align: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   PHASE 2 PLACEHOLDER
+   ========================================================================== */
+.phase-placeholder {
+  background: var(--foam);
+  border: 2px dashed var(--lagoon);
+  border-radius: var(--radius-lg);
+  padding: 46px 38px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.phase-placeholder .ph-badge {
+  background: var(--sand);
+  color: var(--ocean-deep);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.phase-placeholder h2 {
+  font-size: 1.4rem;
+}
+
+.phase-placeholder p {
+  max-width: 50ch;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   RESPONSIVE STYLES
+   ========================================================================== */
+@media (max-width: 860px) {
+  .hook-card {
+    padding: 26px 20px 30px 20px;
+    gap: 14px;
+  }
+
+  .narrative-page {
+    flex-direction: column !important;
+    padding: 26px 24px;
+    gap: 16px;
+  }
+  .narrative-media {
+    width: 150px;
+  }
+
+  .narrative-intro-grid {
+    flex-direction: column;
+    padding: 26px 24px 6px 24px;
+    gap: 16px;
+  }
+  .interactive-section,
+  .narrative-close-wrap,
+  .standalone-nav-row {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .book-interactive-frame {
+    height: 560px;
+  }
+
+  .progress-strip {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .header-top-row { padding-top: 14px; }
+  .identity-title { font-size: 1rem; }
+  .toolbar-item { font-size: 0.8rem; padding: 7px 11px; }
+  .hook-title { font-size: 1.6rem; }
+  .btn { width: 100%; }
+  .page-nav-row { flex-wrap: wrap; }
+  .nav-buttons { width: 100%; }
+  .nav-buttons .btn { flex: 1; }
+  .standalone-nav-row { flex-wrap: wrap; }
+  .standalone-nav-row .nav-buttons { width: 100%; }
+  .book-interactive-frame { height: 500px; }
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ==========================================================================
+     LESSON SHELL / HEADER
+     ========================================================================== -->
+<header class="lesson-header">
+  <div class="wrap-shell">
+    <div class="header-top-row">
+      <div class="identity-row">
+        <span class="series-pill">Stories in Science</span>
+        <div class="identity-meta">
+          <span class="identity-label">ARIZONA GRADE 5</span>
+          <span class="identity-title">The Island Water Mystery</span>
+        </div>
+      </div>
+      <div class="toolbar" role="toolbar" aria-label="Lesson tools">
+        <button type="button" class="toolbar-item" id="btn-glossary" aria-haspopup="dialog">Glossary</button>
+        <button type="button" class="toolbar-item" id="btn-journal" aria-haspopup="dialog">View Journal</button>
+        <button type="button" class="toolbar-item" id="btn-export">Export journal</button>
+        <button type="button" class="toolbar-item toolbar-item-danger" id="btn-restart">Restart lesson</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap-shell">
+    <div class="progress-strip" id="progress-strip"></div>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="wrap">
+
+    <!-- ====================================================================
+         HOOK / LAUNCH PAGE
+         ==================================================================== -->
+    <section class="view fade-in" id="view-hook" data-view="hook">
+      <div class="hook-card">
+        <div class="hook-media">
+          <img class="lesson-image" src="images/scene-theo-reading.png" alt="Theo pauses while reading an island survival book as his mom looks over from nearby." data-fallback-icon="📖">
+        </div>
+        <div class="hook-content">
+          <span class="hook-eyebrow">A survival story with a missing explanation</span>
+          <h1 class="hook-title">The Island Water Mystery</h1>
+          <p class="hook-subtitle">What happens to matter when it seems to disappear?</p>
+          <p class="hook-sub">Theo has reached a part of his island survival book that should make sense&mdash;but it doesn&rsquo;t. The story&rsquo;s water trick seems to work, but the explanation is missing. There&rsquo;s only one way to find out whether it really adds up: follow the evidence.</p>
+          <button type="button" class="btn btn-primary hook-cta" id="btn-open-book">Open the book</button>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <h2>
+          <button type="button" class="accordion-trigger" id="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel">
+            <span>Learning objectives &amp; instructional alignment</span>
+            <span class="accordion-icon" aria-hidden="true">&#9660;</span>
+          </button>
+        </h2>
+        <div class="accordion-panel" id="accordion-panel" role="region" aria-labelledby="accordion-trigger" hidden>
+          <div class="objective-block">
+            <h3>Arizona science standard</h3>
+            <p><span class="standard-code">5.P1U1.1</span> &mdash; Analyze and interpret data to explain that matter of any type can be subdivided into particles too small to see and, in a closed system, if properties change or chemical reactions occur, the amount of matter stays the same.</p>
+          </div>
+          <div class="objective-block">
+            <h3>Student-friendly learning goals</h3>
+            <ul class="goal-list">
+              <li>I can use measurements and observations to track matter even when I cannot see it.</li>
+              <li>I can analyze data to explain why the amount of matter stays the same in a closed system.</li>
+              <li>I can create a model showing what happened to the water and salt.</li>
+            </ul>
+          </div>
+          <div class="boundary-note">
+            <strong>Instructional boundary:</strong> Students are not expected to distinguish mass from weight or explain evaporation, condensation, or chemical reactions at the atomic scale.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         NARRATIVE PAGE 1 — The Part Theo Read Twice + embedded storybook
+         ==================================================================== -->
+    <section class="view" id="view-narrative-1" data-view="narrative-1" hidden>
+      <div class="narrative-page-block">
+        <div class="narrative-intro-grid">
+          <div class="narrative-media">
+            <img class="lesson-image" src="images/scene-theo-reading.png" alt="Theo pauses while reading an island survival book as his mom looks over from nearby." data-fallback-icon="📖">
+          </div>
+          <div class="narrative-body">
+            <span class="section-label">Story start</span>
+            <h2 class="narrative-heading">The part Theo read twice</h2>
+            <div class="narrative-text">
+              <p>Theo's finger stopped halfway down the page.</p>
+              <p>He read the same sentence again.</p>
+              <p>&ldquo;The family used the sun to turn ocean water into fresh water.&rdquo;</p>
+              <p>Mom looked up from the kitchen table.</p>
+              <p class="dialogue d-2">&ldquo;You read that twice,&rdquo; she said.</p>
+              <p>Theo tapped the sentence.</p>
+              <p class="dialogue d-1">&ldquo;Because it skipped something.&rdquo;</p>
+              <p>He turned back to the beginning of the chapter.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="interactive-section">
+          <div class="book-interactive-shell" id="book-interactive-shell">
+            <iframe
+              class="book-interactive-frame"
+              id="book-interactive-frame"
+              title="The Rivera Family — a water story. An interactive storybook Theo is reading."
+              scrolling="no"
+              src="data:text/html;base64,PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+VGhlIFJpdmVyYSBGYW1pbHkg4oCUIEEgV2F0ZXIgU3Rvcnk8L3RpdGxlPgo8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20iPgo8bGluayByZWw9InByZWNvbm5lY3QiIGhyZWY9Imh0dHBzOi8vZm9udHMuZ3N0YXRpYy5jb20iIGNyb3Nzb3JpZ2luPgo8bGluayBocmVmPSJodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUZyYXVuY2VzOml0YWwsb3Bzeix3Z2h0QDAsOS4uMTQ0LDQwMDswLDkuLjE0NCw2MDA7MSw5Li4xNDQsNTAwOzEsOS4uMTQ0LDYwMCZmYW1pbHk9TG9yYTppdGFsLHdnaHRAMCw0MDA7MCw1MDA7MSw0MDA7MSw1MDAmZmFtaWx5PUludGVyOndnaHRANTAwOzYwMDs3MDAmZGlzcGxheT1zd2FwIiByZWw9InN0eWxlc2hlZXQiPgo8c3R5bGU+CiAgOnJvb3QgewogICAgLS1vY2Vhbi1kZWVwOiAjMTIzNjQwOwogICAgLS1vY2Vhbi1taWQ6ICMxZjVjNmI7CiAgICAtLXNhbmQ6ICNmNGU4Y2U7CiAgICAtLXNhbmQtbGlnaHQ6ICNmYmY1ZTY7CiAgICAtLXN1bjogI2UzYTIzYTsKICAgIC0tc3VuLWRhcms6ICNjNDdmMWY7CiAgICAtLWNvcmFsOiAjYzE1MDJlOwogICAgLS1pbms6ICMyNDM3M2I7CiAgICAtLWluay1zb2Z0OiAjNGM2MDY3OwogICAgLS1kcm9wbGV0LWVtcHR5OiByZ2JhKDI0NCwgMjMyLCAyMDYsIDAuMjgpOwogICAgLS1mb2N1cy1yaW5nOiAjOGZkOGU4OwogIH0KCiAgKiB7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IH0KCiAgaHRtbCwgYm9keSB7CiAgICBtYXJnaW46IDA7CiAgICBwYWRkaW5nOiAwOwogIH0KCiAgYm9keSB7CiAgICBmb250LWZhbWlseTogJ0xvcmEnLCBzZXJpZjsKICAgIGJhY2tncm91bmQ6CiAgICAgIHJhZGlhbC1ncmFkaWVudChlbGxpcHNlIGF0IDMwJSAxNSUsIHJnYmEoMjU1LDI1NSwyNTUsMC4wNiksIHRyYW5zcGFyZW50IDU1JSksCiAgICAgIGxpbmVhci1ncmFkaWVudCgxNjBkZWcsIHZhcigtLW9jZWFuLWRlZXApIDAlLCAjMGQyNzMxIDEwMCUpOwogICAgbWluLWhlaWdodDogMTAwdmg7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGp1c3RpZnktY29udGVudDogY2VudGVyOwogICAgcGFkZGluZzogY2xhbXAoMTZweCwgNHZ3LCA0MHB4KTsKICAgIGNvbG9yOiB2YXIoLS1pbmspOwogIH0KCiAgLyogd2hlbiBlbWJlZGRlZCBpbiBhbiBpZnJhbWUgdGhhdCBhdXRvLXNpemVzIHRvIHRoaXMgZG9jdW1lbnQncyBoZWlnaHQsCiAgICAgdGhlIGJvb2sgc2hvdWxkIHNpemUgdG8gaXRzIG93biBjb250ZW50IHJhdGhlciB0aGFuIGZvcmNpbmcgMTAwdmgg4oCUCiAgICAgb3RoZXJ3aXNlIHRoZSB0d28gaGVpZ2h0cyBjaGFzZSBlYWNoIG90aGVyICovCiAgYm9keS5mcmFtZWQgewogICAgbWluLWhlaWdodDogMDsKICAgIGhlaWdodDogYXV0bzsKICAgIGRpc3BsYXk6IGJsb2NrOwogICAgcGFkZGluZzogY2xhbXAoMTJweCwgM3Z3LCAyNHB4KTsKICB9CgogIC5ib29rLWZyYW1lIHsKICAgIHdpZHRoOiAxMDAlOwogICAgbWF4LXdpZHRoOiA4ODBweDsKICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKICB9CiAgYm9keS5mcmFtZWQgLmJvb2stZnJhbWUgewogICAgbWFyZ2luOiAwIGF1dG87CiAgfQoKICAuYm9vay1zaGVsbCB7CiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTgwZGVnLCAjMTY0ODU2LCB2YXIoLS1vY2Vhbi1kZWVwKSA3MCUpOwogICAgYm9yZGVyLXJhZGl1czogMjJweDsKICAgIHBhZGRpbmc6IGNsYW1wKDE0cHgsIDIuNHZ3LCAyMnB4KTsKICAgIGJveC1zaGFkb3c6CiAgICAgIDAgMzBweCA2MHB4IC0yMHB4IHJnYmEoMCwwLDAsMC41NSksCiAgICAgIDAgMCAwIDFweCByZ2JhKDI1NSwyNTUsMjU1LDAuMDQpIGluc2V0OwogIH0KCiAgLyogdG9wIGJhcjogdGl0bGUgKyByZWFkIGFsb3VkICovCiAgLmJvb2stdG9wYmFyIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuOwogICAgZ2FwOiAxMnB4OwogICAgcGFkZGluZzogMnB4IDZweCAxNHB4OwogIH0KCiAgLmJvb2stdGl0bGUgewogICAgZm9udC1mYW1pbHk6ICdGcmF1bmNlcycsIHNlcmlmOwogICAgZm9udC1zdHlsZTogaXRhbGljOwogICAgZm9udC13ZWlnaHQ6IDUwMDsKICAgIGNvbG9yOiB2YXIoLS1zYW5kKTsKICAgIGZvbnQtc2l6ZTogY2xhbXAoMC45NXJlbSwgMi40dncsIDEuMTVyZW0pOwogICAgbGV0dGVyLXNwYWNpbmc6IDAuMDFlbTsKICB9CgogIC5yZWFkLWFsb3VkLWJ0biB7CiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDsKICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgICBnYXA6IDhweDsKICAgIGJhY2tncm91bmQ6IHZhcigtLXN1bik7CiAgICBjb2xvcjogIzJjMWMwMjsKICAgIGJvcmRlcjogbm9uZTsKICAgIGJvcmRlci1yYWRpdXM6IDk5OXB4OwogICAgcGFkZGluZzogOXB4IDE4cHggOXB4IDE0cHg7CiAgICBmb250LWZhbWlseTogJ0ludGVyJywgc2Fucy1zZXJpZjsKICAgIGZvbnQtd2VpZ2h0OiA2MDA7CiAgICBmb250LXNpemU6IDAuODJyZW07CiAgICBsZXR0ZXItc3BhY2luZzogMC4wMWVtOwogICAgY3Vyc29yOiBwb2ludGVyOwogICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZCAwLjE1cyBlYXNlLCB0cmFuc2Zvcm0gMC4xcyBlYXNlOwogICAgZmxleC1zaHJpbms6IDA7CiAgfQogIC5yZWFkLWFsb3VkLWJ0bjpob3ZlciB7IGJhY2tncm91bmQ6ICNlZGIyNTY7IH0KICAucmVhZC1hbG91ZC1idG46YWN0aXZlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjk3KTsgfQogIC5yZWFkLWFsb3VkLWJ0bi5zcGVha2luZyB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1jb3JhbCk7CiAgICBjb2xvcjogdmFyKC0tc2FuZC1saWdodCk7CiAgfQogIC5yZWFkLWFsb3VkLWJ0biBzdmcgeyB3aWR0aDogMTZweDsgaGVpZ2h0OiAxNnB4OyBmbGV4LXNocmluazogMDsgfQoKICAvKiAtLS0tIHRoZSBvcGVuIGJvb2sgc3ByZWFkIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi8KICAuc3ByZWFkIHsKICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKICAgIGRpc3BsYXk6IGdyaWQ7CiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmcjsKICAgIGJhY2tncm91bmQ6IHZhcigtLXNhbmQpOwogICAgYm9yZGVyLXJhZGl1czogMTBweDsKICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICBib3gtc2hhZG93OiAwIDJweCAwIHJnYmEoMCwwLDAsMC4xKSBpbnNldDsKICB9CgogIEBtZWRpYSAobWluLXdpZHRoOiA3MDBweCkgewogICAgLnNwcmVhZCB7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogMC44NmZyIDFmcjsgfQogIH0KCiAgLyogbGVmdCBsZWFmOiBpbGx1c3RyYXRpb24sIGJsZWVkcyB0byB0aGUgZWRnZSBsaWtlIGEgcHJpbnRlZCBwbGF0ZSAqLwogIC5hcnQtbGVhZiB7CiAgICBwb3NpdGlvbjogcmVsYXRpdmU7CiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTYwZGVnLCAjMmM3YThjLCAjMTY0ODU2KTsKICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICBhc3BlY3QtcmF0aW86IDQgLyAzOwogIH0KICBAbWVkaWEgKG1pbi13aWR0aDogNzAwcHgpIHsKICAgIC5hcnQtbGVhZiB7IGFzcGVjdC1yYXRpbzogYXV0bzsgfQogIH0KCiAgLmFydC1sZWFmIGltZyB7CiAgICB3aWR0aDogMTAwJTsKICAgIGhlaWdodDogMTAwJTsKICAgIG9iamVjdC1maXQ6IGNvdmVyOwogICAgZGlzcGxheTogYmxvY2s7CiAgfQoKICAuYXJ0LWZhbGxiYWNrIHsKICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICAgIGluc2V0OiAwOwogICAgZGlzcGxheTogbm9uZTsKICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgICBnYXA6IDhweDsKICAgIGNvbG9yOiByZ2JhKDI0NCwyMzIsMjA2LDAuNzUpOwogICAgZm9udC1mYW1pbHk6ICdJbnRlcicsIHNhbnMtc2VyaWY7CiAgICBmb250LXNpemU6IDAuNzZyZW07CiAgICBsZXR0ZXItc3BhY2luZzogMC4wM2VtOwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgcGFkZGluZzogMTJweDsKICB9CiAgLmFydC1sZWFmLm5vLWltYWdlIC5hcnQtZmFsbGJhY2sgeyBkaXNwbGF5OiBmbGV4OyB9CiAgLmFydC1sZWFmLm5vLWltYWdlIGltZyB7IGRpc3BsYXk6IG5vbmU7IH0KCiAgLnBhZ2UtY29ybmVyLWZvbGQgewogICAgcG9zaXRpb246IGFic29sdXRlOwogICAgaW5zZXQ6IDA7CiAgICBwb2ludGVyLWV2ZW50czogbm9uZTsKICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCgxMjBkZWcsIHRyYW5zcGFyZW50IDYwJSwgcmdiYSgwLDAsMCwwLjE4KSAxMDAlKTsKICAgIG9wYWNpdHk6IDA7CiAgfQogIC5hcnQtbGVhZi5mb2xkaW5nIC5wYWdlLWNvcm5lci1mb2xkIHsgYW5pbWF0aW9uOiBmb2xkRmxhc2ggMC40MnMgZWFzZTsgfQogIEBrZXlmcmFtZXMgZm9sZEZsYXNoIHsKICAgIDAlIHsgb3BhY2l0eTogMDsgfQogICAgNDUlIHsgb3BhY2l0eTogMTsgfQogICAgMTAwJSB7IG9wYWNpdHk6IDA7IH0KICB9CiAgLmFydC1sZWFmLmZsaXAtb3V0IGltZyB7IGFuaW1hdGlvbjogZmxpcE91dCAwLjIycyBlYXNlIGZvcndhcmRzOyB9CiAgLmFydC1sZWFmLmZsaXAtaW4gaW1nIHsgYW5pbWF0aW9uOiBmbGlwSW4gMC4yNHMgZWFzZSBmb3J3YXJkczsgfQogIEBrZXlmcmFtZXMgZmxpcE91dCB7CiAgICB0byB7IHRyYW5zZm9ybTogcGVyc3BlY3RpdmUoODAwcHgpIHJvdGF0ZVkoLTE0ZGVnKSBzY2FsZSgwLjk4KTsgZmlsdGVyOiBicmlnaHRuZXNzKDAuODUpOyB9CiAgfQogIEBrZXlmcmFtZXMgZmxpcEluIHsKICAgIGZyb20geyB0cmFuc2Zvcm06IHBlcnNwZWN0aXZlKDgwMHB4KSByb3RhdGVZKDE0ZGVnKSBzY2FsZSgwLjk4KTsgZmlsdGVyOiBicmlnaHRuZXNzKDAuODUpOyB9CiAgICB0byB7IHRyYW5zZm9ybTogcGVyc3BlY3RpdmUoODAwcHgpIHJvdGF0ZVkoMGRlZykgc2NhbGUoMSk7IGZpbHRlcjogYnJpZ2h0bmVzcygxKTsgfQogIH0KCiAgLyogdGhlIHNwaW5lIC8gYmluZGluZyBiZXR3ZWVuIHRoZSB0d28gbGVhdmVzICovCiAgLnNwaW5lIHsKICAgIGRpc3BsYXk6IG5vbmU7CiAgfQogIEBtZWRpYSAobWluLXdpZHRoOiA3MDBweCkgewogICAgLnNwaW5lIHsKICAgICAgZGlzcGxheTogYmxvY2s7CiAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICAgICAgdG9wOiAwOwogICAgICBib3R0b206IDA7CiAgICAgIGxlZnQ6IDAuODZmcjsKICAgICAgd2lkdGg6IDI2cHg7CiAgICAgIG1hcmdpbi1sZWZ0OiAtMTNweDsKICAgICAgcG9pbnRlci1ldmVudHM6IG5vbmU7CiAgICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCg5MGRlZywKICAgICAgICByZ2JhKDAsMCwwLDApIDAlLAogICAgICAgIHJnYmEoMCwwLDAsMC4xNikgNDIlLAogICAgICAgIHJnYmEoMCwwLDAsMC4yMikgNTAlLAogICAgICAgIHJnYmEoMCwwLDAsMC4xNikgNTglLAogICAgICAgIHJnYmEoMCwwLDAsMCkgMTAwJSk7CiAgICAgIHotaW5kZXg6IDI7CiAgICB9CiAgfQoKICAvKiByaWdodCBsZWFmOiB0ZXh0LCBvbiB0ZXh0dXJlZCBwYXBlciAqLwogIC50ZXh0LWxlYWYgewogICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgcGFkZGluZzogY2xhbXAoMjRweCwgNHZ3LCA0MHB4KSBjbGFtcCgyMnB4LCA0LjV2dywgNDJweCkgY2xhbXAoMjhweCwgNHZ3LCA0MHB4KTsKICAgIGJhY2tncm91bmQ6CiAgICAgIHJhZGlhbC1ncmFkaWVudCgxMjAlIDYwJSBhdCAwJSAwJSwgcmdiYSgyNTUsMjU1LDI1NSwwLjM1KSwgdHJhbnNwYXJlbnQgNjAlKSwKICAgICAgdmFyKC0tc2FuZC1saWdodCk7CiAgfQoKICAucGFnZS10ZXh0IHsKICAgIGZvbnQtZmFtaWx5OiAnTG9yYScsIHNlcmlmOwogICAgZm9udC1zaXplOiBjbGFtcCgxcmVtLCAxLjZ2dywgMS4xcmVtKTsKICAgIGxpbmUtaGVpZ2h0OiAxLjc4OwogICAgY29sb3I6IHZhcigtLWluayk7CiAgfQoKICAucGFnZS10ZXh0IHAgewogICAgbWFyZ2luOiAwIDAgMWVtOwogIH0KICAucGFnZS10ZXh0IHA6bGFzdC1jaGlsZCB7IG1hcmdpbi1ib3R0b206IDA7IH0KCiAgLnBhZ2UtdGV4dCAuZGlhbG9ndWUgewogICAgZm9udC1zdHlsZTogaXRhbGljOwogICAgY29sb3I6IHZhcigtLW9jZWFuLW1pZCk7CiAgfQoKICAvKiBkcm9wIGNhcCBvbiB0aGUgb3BlbmluZyBsaW5lIG9mIGEgcGFnZSwgc3Rvcnlib29rLXN0eWxlICovCiAgLnBhZ2UtdGV4dCBwLmZpcnN0LXBhcmE6OmZpcnN0LWxldHRlciB7CiAgICBmb250LWZhbWlseTogJ0ZyYXVuY2VzJywgc2VyaWY7CiAgICBmb250LXdlaWdodDogNjAwOwogICAgZm9udC1zaXplOiAyLjllbTsKICAgIGxpbmUtaGVpZ2h0OiAwLjc4OwogICAgZmxvYXQ6IGxlZnQ7CiAgICBwYWRkaW5nOiAwLjAzZW0gMC4wOWVtIDAgMDsKICAgIGNvbG9yOiB2YXIoLS1jb3JhbCk7CiAgfQoKICAvKiBzbWFsbCBpbnNldCBpbGx1c3RyYXRpb24gdXNlZCBvbmx5IG9uIG5hcnJvdyBzY3JlZW5zIHdoZXJlIHRoZQogICAgIHNwcmVhZCBjb2xsYXBzZXMgdG8gb25lIGNvbHVtbiwgc28gYXJ0IHN0aWxsIHNpdHMgd2l0aCB0aGUgdGV4dAogICAgIHJhdGhlciB0aGFuIGFzIGEgYmFubmVyIGFib3ZlIGl0ICovCiAgLmluc2V0LWFydCB7CiAgICBkaXNwbGF5OiBub25lOwogIH0KICBAbWVkaWEgKG1heC13aWR0aDogNjk5cHgpIHsKICAgIC5pbnNldC1hcnQgewogICAgICBkaXNwbGF5OiBibG9jazsKICAgICAgZmxvYXQ6IGxlZnQ7CiAgICAgIHdpZHRoOiA0MiU7CiAgICAgIG1heC13aWR0aDogMTkwcHg7CiAgICAgIG1hcmdpbjogMnB4IDE2cHggOHB4IDA7CiAgICAgIGJvcmRlci1yYWRpdXM6IDhweDsKICAgICAgb3ZlcmZsb3c6IGhpZGRlbjsKICAgICAgYm94LXNoYWRvdzogMCA2cHggMTZweCAtNnB4IHJnYmEoMCwwLDAsMC4zNSksIDAgMCAwIDFweCByZ2JhKDAsMCwwLDAuMDYpOwogICAgICBhc3BlY3QtcmF0aW86IDQgLyAzOwogICAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTYwZGVnLCAjMmM3YThjLCAjMTY0ODU2KTsKICAgICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgfQogICAgLmluc2V0LWFydCBpbWcgewogICAgICB3aWR0aDogMTAwJTsKICAgICAgaGVpZ2h0OiAxMDAlOwogICAgICBvYmplY3QtZml0OiBjb3ZlcjsKICAgICAgZGlzcGxheTogYmxvY2s7CiAgICB9CiAgICAuaW5zZXQtYXJ0Lm5vLWltYWdlIC5hcnQtZmFsbGJhY2sgewogICAgICBkaXNwbGF5OiBmbGV4OwogICAgICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgICAgIGluc2V0OiAwOwogICAgICBmb250LXNpemU6IDAuNjJyZW07CiAgICAgIHBhZGRpbmc6IDZweDsKICAgIH0KICAgIC5pbnNldC1hcnQubm8taW1hZ2UgaW1nIHsgZGlzcGxheTogbm9uZTsgfQogICAgLmFydC1sZWFmIHsgZGlzcGxheTogbm9uZTsgfQogICAgLnNwcmVhZCB7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyOyB9CiAgfQogIEBtZWRpYSAobWluLXdpZHRoOiA3MDBweCkgewogICAgLmluc2V0LWFydCB7IGRpc3BsYXk6IG5vbmUgIWltcG9ydGFudDsgfQogIH0KCiAgLyogbmF2IHJvdyAqLwogIC5uYXYtcm93IHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuOwogICAgZ2FwOiAxNHB4OwogICAgcGFkZGluZzogMTZweCA4cHggNHB4OwogIH0KCiAgLm5hdi1idG4gewogICAgZGlzcGxheTogaW5saW5lLWZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiA4cHg7CiAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDsKICAgIGJvcmRlcjogMS41cHggc29saWQgcmdiYSgyNDQsMjMyLDIwNiwwLjMpOwogICAgY29sb3I6IHZhcigtLXNhbmQpOwogICAgYm9yZGVyLXJhZGl1czogOTk5cHg7CiAgICBwYWRkaW5nOiAxMHB4IDE4cHg7CiAgICBmb250LWZhbWlseTogJ0ludGVyJywgc2Fucy1zZXJpZjsKICAgIGZvbnQtd2VpZ2h0OiA2MDA7CiAgICBmb250LXNpemU6IDAuODZyZW07CiAgICBjdXJzb3I6IHBvaW50ZXI7CiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kIDAuMTVzIGVhc2UsIGJvcmRlci1jb2xvciAwLjE1cyBlYXNlLCBvcGFjaXR5IDAuMTVzIGVhc2U7CiAgfQogIC5uYXYtYnRuOmhvdmVyOm5vdCg6ZGlzYWJsZWQpIHsKICAgIGJhY2tncm91bmQ6IHJnYmEoMjQ0LDIzMiwyMDYsMC4xKTsKICAgIGJvcmRlci1jb2xvcjogcmdiYSgyNDQsMjMyLDIwNiwwLjU1KTsKICB9CiAgLm5hdi1idG46ZGlzYWJsZWQgewogICAgb3BhY2l0eTogMC4yODsKICAgIGN1cnNvcjogZGVmYXVsdDsKICB9CiAgLm5hdi1idG4gc3ZnIHsgd2lkdGg6IDE1cHg7IGhlaWdodDogMTVweDsgfQoKICAvKiBnZW50bGUgcHVsc2Ugb24gdGhlIFR1cm4gUGFnZSBidXR0b24gdW50aWwgdGhlIHN0dWRlbnQgdHVybnMgYSBwYWdlICovCiAgLm5hdi1idG4ucHVsc2UtYXR0ZW50aW9uIHsKICAgIGFuaW1hdGlvbjogbmF2QnRuUHVsc2UgMS43cyBlYXNlLWluLW91dCBpbmZpbml0ZTsKICB9CiAgQGtleWZyYW1lcyBuYXZCdG5QdWxzZSB7CiAgICAwJSwgMTAwJSB7IGJveC1zaGFkb3c6IDAgMCAwIDAgcmdiYSgyMjcsIDE2MiwgNTgsIDAuNTUpOyB9CiAgICA1MCUgeyBib3gtc2hhZG93OiAwIDAgMCA5cHggcmdiYSgyMjcsIDE2MiwgNTgsIDApOyB9CiAgfQoKICAvKiBkcm9wbGV0IHRyYWNrZXIgKi8KICAuZHJvcGxldC10cmFjayB7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGdhcDogN3B4OwogIH0KICAuZHJvcGxldCB7CiAgICB3aWR0aDogMTJweDsKICAgIGhlaWdodDogMTVweDsKICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKICB9CiAgLmRyb3BsZXQgc3ZnIHsgd2lkdGg6IDEwMCU7IGhlaWdodDogMTAwJTsgZGlzcGxheTogYmxvY2s7IH0KICAuZHJvcGxldC1maWxsLXBhdGggeyBmaWxsOiB2YXIoLS1kcm9wbGV0LWVtcHR5KTsgdHJhbnNpdGlvbjogZmlsbCAwLjNzIGVhc2U7IH0KICAuZHJvcGxldC5maWxsZWQgLmRyb3BsZXQtZmlsbC1wYXRoIHsgZmlsbDogdmFyKC0tc3VuKTsgfQogIC5kcm9wbGV0LmN1cnJlbnQgLmRyb3BsZXQtZmlsbC1wYXRoIHsgZmlsbDogdmFyKC0tY29yYWwpOyB9CgogIC5wYWdlLWNvdW50LWxhYmVsIHsKICAgIGZvbnQtZmFtaWx5OiAnSW50ZXInLCBzYW5zLXNlcmlmOwogICAgZm9udC1zaXplOiAwLjcycmVtOwogICAgbGV0dGVyLXNwYWNpbmc6IDAuMDRlbTsKICAgIGNvbG9yOiByZ2JhKDI0NCwyMzIsMjA2LDAuNTUpOwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgcGFkZGluZy10b3A6IDJweDsKICB9CgogIC8qIGtleWJvYXJkIGZvY3VzIHZpc2liaWxpdHkgKi8KICBidXR0b246Zm9jdXMtdmlzaWJsZSB7CiAgICBvdXRsaW5lOiAzcHggc29saWQgdmFyKC0tZm9jdXMtcmluZyk7CiAgICBvdXRsaW5lLW9mZnNldDogMnB4OwogIH0KCiAgQG1lZGlhIChwcmVmZXJzLXJlZHVjZWQtbW90aW9uOiByZWR1Y2UpIHsKICAgIC5pbGx1c3RyYXRpb24td3JhcC5mb2xkaW5nIC5wYWdlLWNvcm5lci1mb2xkLAogICAgLmlsbHVzdHJhdGlvbi13cmFwLmZsaXAtb3V0IGltZywKICAgIC5pbGx1c3RyYXRpb24td3JhcC5mbGlwLWluIGltZywKICAgIC5uYXYtYnRuLnB1bHNlLWF0dGVudGlvbiB7CiAgICAgIGFuaW1hdGlvbjogbm9uZSAhaW1wb3J0YW50OwogICAgfQogIH0KCiAgQG1lZGlhIChtYXgtd2lkdGg6IDQyMHB4KSB7CiAgICAubmF2LWJ0biBzcGFuLm5hdi1sYWJlbCB7IGRpc3BsYXk6IG5vbmU7IH0KICAgIC5uYXYtYnRuIHsgcGFkZGluZzogMTBweCAxNHB4OyB9CiAgICAuYm9vay10aXRsZSB7IG1heC13aWR0aDogNTUlOyB9CiAgICAucmVhZC1hbG91ZC1idG4gc3BhbiB7IGRpc3BsYXk6IG5vbmU7IH0KICAgIC5yZWFkLWFsb3VkLWJ0biB7IHBhZGRpbmc6IDEwcHg7IH0KICB9Cjwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+Cgo8ZGl2IGNsYXNzPSJib29rLWZyYW1lIj4KICA8ZGl2IGNsYXNzPSJib29rLXNoZWxsIj4KCiAgICA8ZGl2IGNsYXNzPSJib29rLXRvcGJhciI+CiAgICAgIDxkaXYgY2xhc3M9ImJvb2stdGl0bGUiPlRoZSBSaXZlcmEgRmFtaWx5PC9kaXY+CiAgICAgIDxidXR0b24gY2xhc3M9InJlYWQtYWxvdWQtYnRuIiBpZD0icmVhZEFsb3VkQnRuIiBhcmlhLWxhYmVsPSJSZWFkIHRoaXMgcGFnZSBhbG91ZCI+CiAgICAgICAgPHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTExIDUgNiA5SDJ2Nmg0bDUgNFY1WiIvPjxwYXRoIGQ9Ik0xOS4wNyA0LjkzYTEwIDEwIDAgMCAxIDAgMTQuMTRNMTUuNTQgOC40NmE1IDUgMCAwIDEgMCA3LjA3Ii8+PC9zdmc+CiAgICAgICAgPHNwYW4gaWQ9InJlYWRBbG91ZExhYmVsIj5SZWFkIEFsb3VkPC9zcGFuPgogICAgICA8L2J1dHRvbj4KICAgIDwvZGl2PgoKICAgIDxkaXYgY2xhc3M9InNwcmVhZCI+CiAgICAgIDxkaXYgY2xhc3M9ImFydC1sZWFmIiBpZD0iYXJ0TGVhZiI+CiAgICAgICAgPGltZyBpZD0icGFnZUltYWdlIiBzcmM9IiIgYWx0PSIiPgogICAgICAgIDxkaXYgY2xhc3M9InBhZ2UtY29ybmVyLWZvbGQiPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImFydC1mYWxsYmFjayI+CiAgICAgICAgICA8c3ZnIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjYiPjxwYXRoIGQ9Ik00IDE2LjVWNmEyIDIgMCAwIDEgMi0yaDkuNUwyMCA4LjVWMThhMiAyIDAgMCAxLTIgMkg4Ii8+PHBhdGggZD0iTTE0IDR2NWg1Ii8+PGNpcmNsZSBjeD0iOSIgY3k9IjE0IiByPSIyIi8+PHBhdGggZD0ibTQgMjEgMy41LTQgMi41IDIuNUwxNCAxNWw0IDQiLz48L3N2Zz4KICAgICAgICAgIDxzcGFuIGNsYXNzPSJmYWxsYmFja1RleHRDbGFzcyI+aW1hZ2Ugbm90IGZvdW5kPC9zcGFuPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ic3BpbmUiPjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJ0ZXh0LWxlYWYiPgogICAgICAgIDxkaXYgY2xhc3M9Imluc2V0LWFydCIgaWQ9Imluc2V0QXJ0Ij4KICAgICAgICAgIDxpbWcgaWQ9InBhZ2VJbWFnZUluc2V0IiBzcmM9IiIgYWx0PSIiPgogICAgICAgICAgPGRpdiBjbGFzcz0iYXJ0LWZhbGxiYWNrIj4KICAgICAgICAgICAgPHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS42Ij48cGF0aCBkPSJNNCAxNi41VjZhMiAyIDAgMCAxIDItMmg5LjVMMjAgOC41VjE4YTIgMiAwIDAgMS0yIDJIOCIvPjxwYXRoIGQ9Ik0xNCA0djVoNSIvPjxjaXJjbGUgY3g9IjkiIGN5PSIxNCIgcj0iMiIvPjxwYXRoIGQ9Im00IDIxIDMuNS00IDIuNSAyLjVMMTQgMTVsNCA0Ii8+PC9zdmc+CiAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJmYWxsYmFja1RleHRDbGFzcyI+aW1hZ2Ugbm90IGZvdW5kPC9zcGFuPgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0icGFnZS10ZXh0IiBpZD0icGFnZVRleHQiPjwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgoKICAgIDxkaXYgY2xhc3M9Im5hdi1yb3ciPgogICAgICA8YnV0dG9uIGNsYXNzPSJuYXYtYnRuIiBpZD0icHJldkJ0biIgYXJpYS1sYWJlbD0iUHJldmlvdXMgcGFnZSI+CiAgICAgICAgPHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTUgMThsLTYtNiA2LTYiLz48L3N2Zz4KICAgICAgICA8c3BhbiBjbGFzcz0ibmF2LWxhYmVsIj5CYWNrPC9zcGFuPgogICAgICA8L2J1dHRvbj4KCiAgICAgIDxkaXYgY2xhc3M9ImRyb3BsZXQtdHJhY2siIGlkPSJkcm9wbGV0VHJhY2siIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iUGFnZSBwcm9ncmVzcyI+PC9kaXY+CgogICAgICA8YnV0dG9uIGNsYXNzPSJuYXYtYnRuIiBpZD0ibmV4dEJ0biIgYXJpYS1sYWJlbD0iTmV4dCBwYWdlIj4KICAgICAgICA8c3BhbiBjbGFzcz0ibmF2LWxhYmVsIj5UdXJuIFBhZ2U8L3NwYW4+CiAgICAgICAgPHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNOSA2bDYgNi02IDYiLz48L3N2Zz4KICAgICAgPC9idXR0b24+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9InBhZ2UtY291bnQtbGFiZWwiIGlkPSJwYWdlQ291bnRMYWJlbCI+PC9kaXY+CgogIDwvZGl2Pgo8L2Rpdj4KCjxzY3JpcHQ+CihmdW5jdGlvbiAoKSB7CiAgLy8gLS0tLSBQQUdFIERBVEEgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgLy8gRWRpdCB0aGlzIGFycmF5IHRvIGNoYW5nZSBzdG9yeSBjb250ZW50LiBFYWNoIHBhZ2U6IGltYWdlIHBhdGgsCiAgLy8gYWx0IHRleHQsIGFuZCBwYXJhZ3JhcGhzLiBQYXJhZ3JhcGhzIG1hcmtlZCBkaWFsb2d1ZTp0cnVlIGFyZQogIC8vIHJlbmRlcmVkIGluIGl0YWxpYyBkaWFsb2d1ZSBzdHlsZS4KICBjb25zdCBQQUdFUyA9IFsKICAgIHsKICAgICAgaW1hZ2U6ICJpbWFnZXMvcGFnZS0xLnBuZyIsCiAgICAgIGFsdDogIk1hdGVvIHRpbHRpbmcgYW4gZW1wdHkgd2F0ZXIgYm90dGxlIG9uIGEgYmVhY2gsIG9jZWFuIHdhdmVzIHN1cnJvdW5kaW5nIHRoZSBpc2xhbmQuIiwKICAgICAgcGFyYWdyYXBoczogWwogICAgICAgIHsgdGV4dDogIk1hdGVvIHRpbHRlZCB0aGUgZmFtaWx5J3Mgd2F0ZXIgYm90dGxlLiIgfSwKICAgICAgICB7IHRleHQ6ICJPbmx5IGEgZmV3IGRyb3BzIHNsaWQgYWNyb3NzIHRoZSBib3R0b20uIiB9LAogICAgICAgIHsgdGV4dDogIkJleW9uZCB0aGUgdHJlZXMsIHdhdmVzIHJvbGxlZCB0b3dhcmQgdGhlIGlzbGFuZCBmcm9tIGV2ZXJ5IGRpcmVjdGlvbi4iIH0sCiAgICAgICAgeyB0ZXh0OiAiXHUyMDFDV2UgYXJlIHN1cnJvdW5kZWQgYnkgd2F0ZXIsXHUyMDFEIE1hdGVvIHNhaWQuIiwgZGlhbG9ndWU6IHRydWUgfSwKICAgICAgICB7IHRleHQ6ICJIaXMgbW90aGVyIGxvb2tlZCB0b3dhcmQgdGhlIG9jZWFuLiIgfSwKICAgICAgICB7IHRleHQ6ICJcdTIwMUNXYXRlciBmdWxsIG9mIHNhbHQsXHUyMDFEIHNoZSByZXBsaWVkLiBcdTIwMUNEcmlua2luZyBpdCB3b3VsZCBtYWtlIG91ciBwcm9ibGVtIHdvcnNlLlx1MjAxRCIsIGRpYWxvZ3VlOiB0cnVlIH0sCiAgICAgICAgeyB0ZXh0OiAiU2hlIHNlYXJjaGVkIHRocm91Z2ggdGhlIHN1cHBsaWVzIHRoZSBzdG9ybSBoYWQgbGVmdCBiZWhpbmQuIFRoZXJlIHdhcyBhIHdpZGUgY2xlYXIgY29udGFpbmVyLCBhIHNtYWxsIGN1cCwgYSBzaGVldCBvZiBjbGVhciBwbGFzdGljLCBhbmQgYSBzbW9vdGggc3RvbmUuIiB9LAogICAgICAgIHsgdGV4dDogIkhpcyBtb3RoZXIgZ2F0aGVyZWQgdGhlIG1hdGVyaWFscy4iIH0sCiAgICAgICAgeyB0ZXh0OiAiXHUyMDFDVGhlIHN1biBtYXkgYmUgYWJsZSB0byBoZWxwIHVzLlx1MjAxRCIsIGRpYWxvZ3VlOiB0cnVlIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgaW1hZ2U6ICJpbWFnZXMvcGFnZS0yLnBuZyIsCiAgICAgIGFsdDogIk1hdGVvIGFuZCBoaXMgbW90aGVyIHNldHRpbmcgdXAgYSBzb2xhciBzdGlsbCB3aXRoIGEgY29udGFpbmVyLCBzbWFsbCBjdXAsIGFuZCBwbGFzdGljIHNoZWV0LiIsCiAgICAgIHBhcmFncmFwaHM6IFsKICAgICAgICB7IHRleHQ6ICJNYXRlbyBwbGFjZWQgdGhlIHNtYWxsIGN1cCBpbiB0aGUgY2VudGVyIG9mIHRoZSB3aWRlIGNvbnRhaW5lci4iIH0sCiAgICAgICAgeyB0ZXh0OiAiSGlzIG1vdGhlciBzbG93bHkgcG91cmVkIG9jZWFuIHdhdGVyIGFyb3VuZCBpdC4iIH0sCiAgICAgICAgeyB0ZXh0OiAiXHUyMDFDQ2FyZWZ1bCxcdTIwMUQgc2hlIHNhaWQuIFx1MjAxQ05vbmUgb2YgdGhlIG9jZWFuIHdhdGVyIGNhbiBiZWdpbiBpbnNpZGUgdGhlIGN1cC5cdTIwMUQiLCBkaWFsb2d1ZTogdHJ1ZSB9LAogICAgICAgIHsgdGV4dDogIk1hdGVvIGNoZWNrZWQgdGhyb3VnaCB0aGUgY2xlYXIgc2lkZXMuIiB9LAogICAgICAgIHsgdGV4dDogIlRoZSBjdXAgd2FzIGVtcHR5LiBPY2VhbiB3YXRlciBzdXJyb3VuZGVkIGl0LiIgfSwKICAgICAgICB7IHRleHQ6ICJUb2dldGhlciwgdGhleSBzdHJldGNoZWQgdGhlIGNsZWFyIHBsYXN0aWMgdGlnaHRseSBvdmVyIHRoZSB0b3AuIE1hdGVvIHBsYWNlZCB0aGUgc21vb3RoIHN0b25lIGluIHRoZSBjZW50ZXIsIG1ha2luZyB0aGUgY292ZXIgZGlwIGp1c3QgYWJvdmUgdGhlIGVtcHR5IGN1cC4iIH0sCiAgICAgICAgeyB0ZXh0OiAiVGhlbiB0aGV5IGNhcnJpZWQgdGhlIGNvdmVyZWQgY29udGFpbmVyIGludG8gdGhlIHN1bmxpZ2h0LiIgfSwKICAgICAgICB7IHRleHQ6ICJcdTIwMUNBbmQgbm93P1x1MjAxRCBNYXRlbyBhc2tlZC4iLCBkaWFsb2d1ZTogdHJ1ZSB9LAogICAgICAgIHsgdGV4dDogIlx1MjAxQ05vdyB3ZSB3YWl0Llx1MjAxRCIsIGRpYWxvZ3VlOiB0cnVlIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgaW1hZ2U6ICJpbWFnZXMvcGFnZS0zLnBuZyIsCiAgICAgIGFsdDogIk1hdGVvIGhvbGRpbmcgdXAgYSBjdXAgb2YgY2xlYXIgZnJlc2ggd2F0ZXIsIHRoZSBzb2xhciBzdGlsbCBiZXNpZGUgaGltIGluIGxhdGUgYWZ0ZXJub29uIGxpZ2h0LiIsCiAgICAgIHBhcmFncmFwaHM6IFsKICAgICAgICB7IHRleHQ6ICJCeSBsYXRlIGFmdGVybm9vbiwgdGlueSBkcm9wcyBjb3ZlcmVkIHRoZSB1bmRlcnNpZGUgb2YgdGhlIGNsZWFyIHBsYXN0aWMuIiB9LAogICAgICAgIHsgdGV4dDogIlRoZSBkcm9wcyBzbGlkIHRvd2FyZCB0aGUgbG93ZXN0IHBvaW50LiIgfSwKICAgICAgICB7IHRleHQ6ICJPbmUgYnkgb25lLCB0aGV5IGZlbGwgaW50byB0aGUgY2VudGVyIGN1cC4iIH0sCiAgICAgICAgeyB0ZXh0OiAiV2hlbiB0aGUgZmFtaWx5IGxpZnRlZCB0aGUgY292ZXIsIGNsZWFyIHdhdGVyIGNvdmVyZWQgdGhlIGJvdHRvbSBvZiB0aGUgY3VwLiBMZXNzIHdhdGVyIHJlbWFpbmVkIGluIHRoZSB3aWRlIGNvbnRhaW5lciwgYW5kIGEgcGFsZSBsYXllciBvZiBzYWx0IHdhcyBsZWZ0IGJlaGluZC4iIH0sCiAgICAgICAgeyB0ZXh0OiAiTWF0ZW8gaGVsZCB1cCB0aGUgY3VwLiIgfSwKICAgICAgICB7IHRleHQ6ICJcdTIwMUNJdCB3b3JrZWQhXHUyMDFEIiwgZGlhbG9ndWU6IHRydWUgfSwKICAgICAgICB7IHRleHQ6ICJUaGUgUml2ZXJhIGZhbWlseSBoYWQgdHVybmVkIG9jZWFuIHdhdGVyIGludG8gZnJlc2ggd2F0ZXIgYW5kIHNvbHZlZCB0aGVpciBwcm9ibGVtLiIgfQogICAgICBdCiAgICB9CiAgXTsKCiAgLy8gLS0tLSBTVEFURSAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICBsZXQgY3VycmVudFBhZ2UgPSAwOyAvLyBvcGVucyBkaXJlY3RseSBvbiBwYWdlIDEgKGluZGV4IDApLCBubyBjb3ZlcgogIGxldCBpc1NwZWFraW5nID0gZmFsc2U7CiAgbGV0IGhhc1R1cm5lZFBhZ2UgPSBmYWxzZTsgLy8gY29udHJvbHMgdGhlICJjbGljayBtZSIgcHVsc2Ugb24gVHVybiBQYWdlCgogIC8vIC0tLS0gRUxFTUVOVFMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogIGNvbnN0IHBhZ2VJbWFnZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwYWdlSW1hZ2UnKTsKICBjb25zdCBwYWdlSW1hZ2VJbnNldCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwYWdlSW1hZ2VJbnNldCcpOwogIGNvbnN0IGFydExlYWYgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXJ0TGVhZicpOwogIGNvbnN0IGluc2V0QXJ0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2luc2V0QXJ0Jyk7CiAgY29uc3QgcGFnZVRleHQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGFnZVRleHQnKTsKICBjb25zdCBwcmV2QnRuID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3ByZXZCdG4nKTsKICBjb25zdCBuZXh0QnRuID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25leHRCdG4nKTsKICBjb25zdCBkcm9wbGV0VHJhY2sgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZHJvcGxldFRyYWNrJyk7CiAgY29uc3QgcGFnZUNvdW50TGFiZWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGFnZUNvdW50TGFiZWwnKTsKICBjb25zdCByZWFkQWxvdWRCdG4gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmVhZEFsb3VkQnRuJyk7CiAgY29uc3QgcmVhZEFsb3VkTGFiZWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmVhZEFsb3VkTGFiZWwnKTsKCiAgLy8gLS0tLSBCVUlMRCBEUk9QTEVUIFRSQUNLRVIgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgZnVuY3Rpb24gYnVpbGREcm9wbGV0cygpIHsKICAgIGRyb3BsZXRUcmFjay5pbm5lckhUTUwgPSAnJzsKICAgIFBBR0VTLmZvckVhY2goKF8sIGkpID0+IHsKICAgICAgY29uc3QgZCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgICBkLmNsYXNzTmFtZSA9ICdkcm9wbGV0JzsKICAgICAgZC5pbm5lckhUTUwgPSAnPHN2ZyB2aWV3Qm94PSIwIDAgMTIgMTUiPjxwYXRoIGNsYXNzPSJkcm9wbGV0LWZpbGwtcGF0aCIgZD0iTTYgMEM2IDAgMC41IDcuMiAwLjUgMTAuNWE1LjUgNS41IDAgMCAwIDExIDBDMTEuNSA3LjIgNiAwIDYgMFoiLz48L3N2Zz4nOwogICAgICBkcm9wbGV0VHJhY2suYXBwZW5kQ2hpbGQoZCk7CiAgICB9KTsKICB9CgogIGZ1bmN0aW9uIHVwZGF0ZURyb3BsZXRzKCkgewogICAgY29uc3QgZHJvcHMgPSBkcm9wbGV0VHJhY2sucXVlcnlTZWxlY3RvckFsbCgnLmRyb3BsZXQnKTsKICAgIGRyb3BzLmZvckVhY2goKGQsIGkpID0+IHsKICAgICAgZC5jbGFzc0xpc3QudG9nZ2xlKCdmaWxsZWQnLCBpIDwgY3VycmVudFBhZ2UpOwogICAgICBkLmNsYXNzTGlzdC50b2dnbGUoJ2N1cnJlbnQnLCBpID09PSBjdXJyZW50UGFnZSk7CiAgICB9KTsKICB9CgogIC8vIC0tLS0gUkVOREVSIFBBR0UgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgZnVuY3Rpb24gcmVuZGVyUGFnZShkaXJlY3Rpb24pIHsKICAgIGNvbnN0IHBhZ2UgPSBQQUdFU1tjdXJyZW50UGFnZV07CgogICAgLy8gaW1hZ2Ugd2l0aCBncmFjZWZ1bCBmYWxsYmFjayBpZiBmaWxlIGlzbid0IHByZXNlbnQgeWV0CiAgICAvLyAodHdvIDxpbWc+IGVsZW1lbnRzIHNoYXJlIHRoZSBzYW1lIHNvdXJjZTogdGhlIGZ1bGwtYmxlZWQgbGVmdAogICAgLy8gbGVhZiBmb3Igd2lkZSBzY3JlZW5zLCBhbmQgdGhlIGluc2V0IHBsYXRlIGZvciBuYXJyb3cgc2NyZWVucykKICAgIFt7IGVsOiBwYWdlSW1hZ2UsIHdyYXA6IGFydExlYWYgfSwgeyBlbDogcGFnZUltYWdlSW5zZXQsIHdyYXA6IGluc2V0QXJ0IH1dLmZvckVhY2goKHsgZWwsIHdyYXAgfSkgPT4gewogICAgICB3cmFwLmNsYXNzTGlzdC5yZW1vdmUoJ25vLWltYWdlJyk7CiAgICAgIGVsLm9uZXJyb3IgPSBmdW5jdGlvbiAoKSB7CiAgICAgICAgd3JhcC5jbGFzc0xpc3QuYWRkKCduby1pbWFnZScpOwogICAgICAgIGNvbnN0IGxhYmVsID0gd3JhcC5xdWVyeVNlbGVjdG9yKCcuZmFsbGJhY2tUZXh0Q2xhc3MnKTsKICAgICAgICBpZiAobGFiZWwpIGxhYmVsLnRleHRDb250ZW50ID0gcGFnZS5pbWFnZS5zcGxpdCgnLycpLnBvcCgpICsgJyBub3QgZm91bmQnOwogICAgICB9OwogICAgICBlbC5zcmMgPSBwYWdlLmltYWdlOwogICAgICBlbC5hbHQgPSBwYWdlLmFsdDsKICAgIH0pOwoKICAgIC8vIHRleHQg4oCUIGZpcnN0IHBhcmFncmFwaCBnZXRzIHRoZSBzdG9yeWJvb2sgZHJvcCBjYXAKICAgIHBhZ2VUZXh0LmlubmVySFRNTCA9IHBhZ2UucGFyYWdyYXBocy5tYXAoKHAsIGkpID0+CiAgICAgIGA8cCR7cC5kaWFsb2d1ZSA/ICcgY2xhc3M9ImRpYWxvZ3VlIicgOiAoaSA9PT0gMCA/ICcgY2xhc3M9ImZpcnN0LXBhcmEiJyA6ICcnKX0+JHtwLnRleHR9PC9wPmAKICAgICkuam9pbignJyk7CgogICAgdXBkYXRlRHJvcGxldHMoKTsKICAgIHByZXZCdG4uZGlzYWJsZWQgPSBjdXJyZW50UGFnZSA9PT0gMDsKICAgIG5leHRCdG4uZGlzYWJsZWQgPSBjdXJyZW50UGFnZSA9PT0gUEFHRVMubGVuZ3RoIC0gMTsKICAgIHBhZ2VDb3VudExhYmVsLnRleHRDb250ZW50ID0gYFBhZ2UgJHtjdXJyZW50UGFnZSArIDF9IG9mICR7UEFHRVMubGVuZ3RofWA7CgogICAgLy8gcHVsc2UgdGhlIFR1cm4gUGFnZSBidXR0b24gZ2VudGx5IHVudGlsIHRoZSBzdHVkZW50IHR1cm5zIGEgcGFnZSDigJQKICAgIC8vIG5ldmVyIGdhdGVzIGFueXRoaW5nLCBqdXN0IGVuY291cmFnZXMgdGhlIGZpcnN0IHRhcAogICAgbmV4dEJ0bi5jbGFzc0xpc3QudG9nZ2xlKCdwdWxzZS1hdHRlbnRpb24nLCAhaGFzVHVybmVkUGFnZSAmJiAhbmV4dEJ0bi5kaXNhYmxlZCk7CgogICAgLy8gc3RvcCBhbnkgaW4tcHJvZ3Jlc3MgbmFycmF0aW9uIHdoZW4gdGhlIHBhZ2UgY2hhbmdlcwogICAgaWYgKGlzU3BlYWtpbmcpIHN0b3BSZWFkaW5nKCk7CgogICAgLy8gZm9sZC9mbGlwIGFuaW1hdGlvbiBvbiB3aGljaGV2ZXIgYXJ0IGVsZW1lbnQgaXMgdmlzaWJsZQogICAgaWYgKGRpcmVjdGlvbikgewogICAgICBhcnRMZWFmLmNsYXNzTGlzdC5hZGQoJ2ZvbGRpbmcnLCAnZmxpcC1vdXQnKTsKICAgICAgc2V0VGltZW91dCgoKSA9PiB7CiAgICAgICAgYXJ0TGVhZi5jbGFzc0xpc3QucmVtb3ZlKCdmbGlwLW91dCcpOwogICAgICAgIGFydExlYWYuY2xhc3NMaXN0LmFkZCgnZmxpcC1pbicpOwogICAgICAgIHNldFRpbWVvdXQoKCkgPT4gYXJ0TGVhZi5jbGFzc0xpc3QucmVtb3ZlKCdmb2xkaW5nJywgJ2ZsaXAtaW4nKSwgMjYwKTsKICAgICAgfSwgMTUwKTsKICAgIH0KCiAgICBub3RpZnlIb3N0KCdib29rOnBhZ2VDaGFuZ2UnLCB7IHBhZ2U6IGN1cnJlbnRQYWdlICsgMSwgdG90YWxQYWdlczogUEFHRVMubGVuZ3RoIH0pOwogICAgaWYgKGN1cnJlbnRQYWdlID09PSBQQUdFUy5sZW5ndGggLSAxKSB7CiAgICAgIG5vdGlmeUhvc3QoJ2Jvb2s6Y29tcGxldGVkJywgeyB0b3RhbFBhZ2VzOiBQQUdFUy5sZW5ndGggfSk7CiAgICB9CiAgICBpZiAoaXNFbWJlZGRlZCkgewogICAgICBzZXRUaW1lb3V0KHJlcG9ydEhlaWdodCwgMjApOwogICAgICBzZXRUaW1lb3V0KHJlcG9ydEhlaWdodCwgMzAwKTsKICAgIH0KICB9CgogIC8vIC0tLS0gTkFWIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgZnVuY3Rpb24gZ29OZXh0KCkgewogICAgaWYgKGN1cnJlbnRQYWdlIDwgUEFHRVMubGVuZ3RoIC0gMSkgewogICAgICBoYXNUdXJuZWRQYWdlID0gdHJ1ZTsKICAgICAgY3VycmVudFBhZ2UrKzsKICAgICAgcmVuZGVyUGFnZSgnbmV4dCcpOwogICAgfQogIH0KICBmdW5jdGlvbiBnb1ByZXYoKSB7CiAgICBpZiAoY3VycmVudFBhZ2UgPiAwKSB7CiAgICAgIGN1cnJlbnRQYWdlLS07CiAgICAgIHJlbmRlclBhZ2UoJ3ByZXYnKTsKICAgIH0KICB9CgogIG5leHRCdG4uYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBnb05leHQpOwogIHByZXZCdG4uYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBnb1ByZXYpOwoKICBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgKGUpID0+IHsKICAgIGlmIChlLmtleSA9PT0gJ0Fycm93UmlnaHQnKSBnb05leHQoKTsKICAgIGlmIChlLmtleSA9PT0gJ0Fycm93TGVmdCcpIGdvUHJldigpOwogIH0pOwoKICAvLyAtLS0tIFJFQUQgQUxPVUQgKFdlYiBTcGVlY2ggQVBJKSAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogIGxldCB1dHRlcmFuY2UgPSBudWxsOwoKICBmdW5jdGlvbiBzdG9wUmVhZGluZygpIHsKICAgIGlmICgnc3BlZWNoU3ludGhlc2lzJyBpbiB3aW5kb3cpIHdpbmRvdy5zcGVlY2hTeW50aGVzaXMuY2FuY2VsKCk7CiAgICBpc1NwZWFraW5nID0gZmFsc2U7CiAgICByZWFkQWxvdWRCdG4uY2xhc3NMaXN0LnJlbW92ZSgnc3BlYWtpbmcnKTsKICAgIHJlYWRBbG91ZExhYmVsLnRleHRDb250ZW50ID0gJ1JlYWQgQWxvdWQnOwogIH0KCiAgZnVuY3Rpb24gc3RhcnRSZWFkaW5nKCkgewogICAgaWYgKCEoJ3NwZWVjaFN5bnRoZXNpcycgaW4gd2luZG93KSkgewogICAgICBhbGVydCgnUmVhZCBhbG91ZCBpcyBub3Qgc3VwcG9ydGVkIGluIHRoaXMgYnJvd3Nlci4nKTsKICAgICAgcmV0dXJuOwogICAgfQogICAgY29uc3QgdGV4dCA9IFBBR0VTW2N1cnJlbnRQYWdlXS5wYXJhZ3JhcGhzLm1hcChwID0+IHAudGV4dCkuam9pbignICcpOwogICAgdXR0ZXJhbmNlID0gbmV3IFNwZWVjaFN5bnRoZXNpc1V0dGVyYW5jZSh0ZXh0KTsKICAgIHV0dGVyYW5jZS5yYXRlID0gMC45NTsKICAgIHV0dGVyYW5jZS5waXRjaCA9IDEuMDsKICAgIHV0dGVyYW5jZS5vbmVuZCA9IHN0b3BSZWFkaW5nOwogICAgdXR0ZXJhbmNlLm9uZXJyb3IgPSBzdG9wUmVhZGluZzsKICAgIHdpbmRvdy5zcGVlY2hTeW50aGVzaXMuY2FuY2VsKCk7CiAgICB3aW5kb3cuc3BlZWNoU3ludGhlc2lzLnNwZWFrKHV0dGVyYW5jZSk7CiAgICBpc1NwZWFraW5nID0gdHJ1ZTsKICAgIHJlYWRBbG91ZEJ0bi5jbGFzc0xpc3QuYWRkKCdzcGVha2luZycpOwogICAgcmVhZEFsb3VkTGFiZWwudGV4dENvbnRlbnQgPSAnU3RvcCc7CiAgfQoKICByZWFkQWxvdWRCdG4uYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCAoKSA9PiB7CiAgICBpZiAoaXNTcGVha2luZykgewogICAgICBzdG9wUmVhZGluZygpOwogICAgfSBlbHNlIHsKICAgICAgc3RhcnRSZWFkaW5nKCk7CiAgICB9CiAgfSk7CgogIC8vIC0tLS0gT1BUSU9OQUwgSE9TVC9KT1VSTkFMIElOVEVHUkFUSU9OIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgLy8gSWYgdGhpcyBmaWxlIGlzIGVtYmVkZGVkIGFzIGFuIGlmcmFtZSBpbnNpZGUgYSBsZXNzb24gdGhhdCBsaXN0ZW5zCiAgLy8gZm9yIHBvc3RNZXNzYWdlIGV2ZW50cywgdGhlc2UgZmlyZSBvbiBwYWdlIHR1cm5zIGFuZCBvbiBmaW5pc2hpbmcKICAvLyB0aGUgYm9vay4gU2FmZSBuby1vcCBpZiB0aGVyZSBpcyBubyBwYXJlbnQgbGlzdGVuaW5nLgogIGZ1bmN0aW9uIG5vdGlmeUhvc3QodHlwZSwgZGV0YWlsKSB7CiAgICB0cnkgewogICAgICBpZiAod2luZG93LnBhcmVudCAmJiB3aW5kb3cucGFyZW50ICE9PSB3aW5kb3cpIHsKICAgICAgICB3aW5kb3cucGFyZW50LnBvc3RNZXNzYWdlKHsgdHlwZSwgZGV0YWlsLCBzb3VyY2U6ICdyaXZlcmEtYm9vaycgfSwgJyonKTsKICAgICAgfQogICAgfSBjYXRjaCAoZSkgeyAvKiBuby1vcCAqLyB9CiAgfQoKICAvLyAtLS0tIEFVVE8tUkVTSVpFIChyZXBvcnQgY29udGVudCBoZWlnaHQgc28gdGhlIGhvc3QgaWZyYW1lIG5ldmVyCiAgLy8gbmVlZHMgYW4gaW50ZXJuYWwgc2Nyb2xsYmFyIHRvIHJlYWNoIHRoZSBuYXYgYnV0dG9ucykgLS0tLS0tLS0tLS0tLS0tLS0KICBjb25zdCBpc0VtYmVkZGVkID0gd2luZG93LnBhcmVudCAmJiB3aW5kb3cucGFyZW50ICE9PSB3aW5kb3c7CiAgaWYgKGlzRW1iZWRkZWQpIHsKICAgIGRvY3VtZW50LmJvZHkuY2xhc3NMaXN0LmFkZCgnZnJhbWVkJyk7CiAgfQoKICBmdW5jdGlvbiByZXBvcnRIZWlnaHQoKSB7CiAgICBpZiAoIWlzRW1iZWRkZWQpIHJldHVybjsKICAgIGNvbnN0IGggPSBNYXRoLmNlaWwoZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50LmdldEJvdW5kaW5nQ2xpZW50UmVjdCgpLmhlaWdodCk7CiAgICBub3RpZnlIb3N0KCdib29rOnJlc2l6ZScsIHsgaGVpZ2h0OiBoIH0pOwogIH0KCiAgaWYgKGlzRW1iZWRkZWQpIHsKICAgIGlmICgnUmVzaXplT2JzZXJ2ZXInIGluIHdpbmRvdykgewogICAgICBjb25zdCBybyA9IG5ldyBSZXNpemVPYnNlcnZlcigoKSA9PiByZXBvcnRIZWlnaHQoKSk7CiAgICAgIHJvLm9ic2VydmUoZG9jdW1lbnQuYm9keSk7CiAgICB9IGVsc2UgewogICAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcigncmVzaXplJywgcmVwb3J0SGVpZ2h0KTsKICAgIH0KICAgIGlmIChkb2N1bWVudC5mb250cyAmJiBkb2N1bWVudC5mb250cy5yZWFkeSkgewogICAgICBkb2N1bWVudC5mb250cy5yZWFkeS50aGVuKHJlcG9ydEhlaWdodCk7CiAgICB9CiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignbG9hZCcsIHJlcG9ydEhlaWdodCk7CiAgfQoKICAvLyAtLS0tIElOSVQgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgYnVpbGREcm9wbGV0cygpOwogIHJlbmRlclBhZ2UobnVsbCk7CiAgcmVwb3J0SGVpZ2h0KCk7Cn0pKCk7Cjwvc2NyaXB0Pgo8L2JvZHk+CjwvaHRtbD4K"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="narrative-close-wrap">
+          <div class="narrative-text">
+            <p>Theo turned the page.</p>
+            <p>A new chapter had already begun.</p>
+            <p>He flipped back.</p>
+            <p>Then forward again.</p>
+          </div>
+          <p class="standout-line">&ldquo;That&rsquo;s it?&rdquo;</p>
+        </div>
+
+        <div class="standalone-nav-row">
+          <div class="nav-buttons">
+            <button type="button" class="btn btn-secondary nav-back" data-page="1">Back</button>
+            <button type="button" class="btn btn-primary nav-continue" data-page="1">Return to Theo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         NARRATIVE PAGE 2 — A Story Can Skip a Step
+         ==================================================================== -->
+    <section class="view" id="view-narrative-2" data-view="narrative-2" hidden>
+      <div class="narrative-page image-right">
+        <div class="narrative-media">
+          <img class="lesson-image" src="images/scene-theo-mom-question.png" alt="Theo shows his mom the unfinished explanation in his island survival book." data-fallback-icon="💬">
+        </div>
+        <div class="narrative-body">
+          <span class="section-label">Theo's question</span>
+          <h2 class="narrative-heading">The story skipped something</h2>
+          <div class="narrative-text">
+            <p>Theo carried the open book to the kitchen table.</p>
+            <p class="dialogue d-1">&ldquo;The story jumps from the setup to &lsquo;It worked,&rsquo;&rdquo; he said.</p>
+            <p>He pushed the book toward Mom.</p>
+            <p class="dialogue d-1">&ldquo;You&rsquo;re the chemist. Does this make sense to you?&rdquo;</p>
+            <p>Mom studied the illustration.</p>
+            <p class="dialogue d-2">&ldquo;Science could explain this.&rdquo;</p>
+            <p>Theo looked up.</p>
+            <p class="dialogue d-1">&ldquo;Then what happened?&rdquo;</p>
+            <p>Mom slid the book back toward him.</p>
+            <p class="dialogue d-2">&ldquo;That&rsquo;s the part you get to figure out. What does the story leave unanswered?&rdquo;</p>
+            <p>Theo pointed to the container.</p>
+            <p class="dialogue d-1">&ldquo;The water around the cup got lower, and then water showed up in the empty cup.&rdquo;</p>
+            <p>He flipped back a page.</p>
+            <p class="dialogue d-1">&ldquo;But the ocean water was salty. What happened to the salt?&rdquo;</p>
+            <p>Mom nodded toward the beginning and ending pictures.</p>
+            <p class="dialogue d-2">&ldquo;What else would you need to know?&rdquo;</p>
+            <p>Theo studied them.</p>
+            <p class="dialogue d-1">&ldquo;How much they started with. How much they ended with. Otherwise, how do we know where everything went?&rdquo;</p>
+            <p>Mom waited.</p>
+            <p>Theo looked at the page again.</p>
+          </div>
+          <p class="standout-line">&ldquo;Evidence from before and after.&rdquo;</p>
+
+          <div class="page-nav-row">
+            <div class="nav-buttons">
+              <button type="button" class="btn btn-secondary nav-back" data-page="2">Back</button>
+              <button type="button" class="btn btn-primary nav-continue" data-page="2">Keep reading</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         NARRATIVE PAGE 3 — Start With the Evidence
+         ==================================================================== -->
+    <section class="view" id="view-narrative-3" data-view="narrative-3" hidden>
+      <div class="narrative-page">
+        <div class="narrative-media">
+          <img class="lesson-image" src="images/scene-theo-mom-question.png" alt="Theo shows his mom the unfinished explanation in his island survival book." data-fallback-icon="💬">
+        </div>
+        <div class="narrative-body">
+          <span class="section-label">Starting the trail</span>
+          <h2 class="narrative-heading">Start with the evidence</h2>
+          <div class="narrative-text">
+            <p>Mom cleared a space on the table.</p>
+            <p class="dialogue d-2">&ldquo;Then don&rsquo;t begin with an answer,&rdquo; she said. &ldquo;Begin by keeping track.&rdquo;</p>
+            <p>Theo pulled his notebook closer.</p>
+            <p class="dialogue d-1">&ldquo;If we figure this out, I want to write to the author.&rdquo;</p>
+            <p>Mom raised an eyebrow.</p>
+            <p class="dialogue d-2">&ldquo;About the story?&rdquo;</p>
+            <p class="dialogue d-1">&ldquo;About the science,&rdquo; Theo said. &ldquo;The part the story skipped.&rdquo;</p>
+            <p>Mom opened the notebook to a fresh page.</p>
+            <p class="dialogue d-2">&ldquo;Then make sure the evidence can support what you tell them.&rdquo;</p>
+            <p>Theo picked up his pencil.</p>
+            <p>Mom tapped the blank page.</p>
+            <p class="dialogue d-2">&ldquo;Start with what you think happened. Later, see what the evidence does to your idea.&rdquo;</p>
+          </div>
+
+          <div class="journal-card">
+            <div class="journal-heading">Before the evidence</div>
+            <label class="journal-prompt" for="journal-initial-idea">What do you think happened to the water and salt when they could no longer be seen?</label>
+            <p class="journal-helper">This is your starting idea. You will return to it after you collect evidence.</p>
+            <textarea class="journal-textarea" id="journal-initial-idea" placeholder="My first idea is..."></textarea>
+            <div class="journal-footer-row">
+              <span class="saved-indicator" id="journal-saved-indicator" aria-live="polite">&#10003; Saved</span>
+            </div>
+          </div>
+
+          <div class="page-nav-row">
+            <div class="nav-buttons">
+              <button type="button" class="btn btn-secondary nav-back" data-page="3">Back</button>
+              <button type="button" class="btn btn-primary nav-continue" data-page="3" id="btn-join-investigation">Start the evidence trail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         INVESTIGATION TRANSITION — Before Anything Changes
+         ==================================================================== -->
+    <section class="view" id="view-transition" data-view="transition" hidden>
+      <div class="narrative-page">
+        <div class="narrative-media">
+          <img class="lesson-image" src="images/scene-materials-counter.png" alt="Theo and his mom arrange water, salt, measuring tools, a container, a collection cup, a cover, a pebble, a spoon, and a digital scale on the kitchen counter." data-fallback-icon="🧪">
+        </div>
+        <div class="narrative-body">
+          <span class="section-label">Setting up the test</span>
+          <h2 class="narrative-heading">Before anything changes</h2>
+          <div class="narrative-text">
+            <p>Mom set the digital scale in the center of the counter.</p>
+            <p>Beside it, she placed the water, salt, measuring tools, clear container, small collection cup, clear cover, pebble, and stirring spoon.</p>
+            <p>Theo moved his notebook beside the scale.</p>
+            <p class="dialogue d-1">&ldquo;Before we change anything,&rdquo; he said, &ldquo;we need to know what we started with.&rdquo;</p>
+            <p>Mom slid the measuring cup toward the scale.</p>
+            <p class="dialogue d-2">&ldquo;Water first?&rdquo;</p>
+            <p>Theo nodded and uncapped his pen.</p>
+            <p>The scale was ready.</p>
+          </div>
+          <div class="page-nav-row">
+            <div class="nav-buttons">
+              <button type="button" class="btn btn-secondary nav-back" data-page="transition">Back</button>
+              <button type="button" class="btn btn-primary" id="btn-begin-measuring">Measure the water</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PHASE 2 PLACEHOLDER
+         ==================================================================== -->
+    <!-- PHASE 2 INSERTION POINT: measuring and mixing simulation -->
+    <section class="view" id="view-phase2-placeholder" data-view="phase2" hidden>
+      <div class="phase-placeholder">
+        <span class="ph-badge">Coming next</span>
+        <h2>Measuring simulation coming next</h2>
+        <p>Theo and Mom are ready to create a before-measurement record. The next build begins with placing the empty measuring cup on the scale, using tare, and measuring one cup of water.</p>
+        <button type="button" class="btn btn-secondary nav-back" data-page="phase2">Back to the counter</button>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="lesson-footer">
+    <div class="wrap">
+      <p>&copy; 2026 Brooke Toon. All rights reserved. This lesson is part of the Stories in Science Framework developed by the author. Generative AI tools were used to support the development of this instructional material. This content may not be reproduced, distributed, modified, or used for commercial purposes without permission.</p>
+    </div>
+  </footer>
+</main>
+
+<!-- ==========================================================================
+     GLOSSARY DRAWER — slides in from the left
+     ========================================================================== -->
+<div class="drawer-overlay drawer-overlay-left" id="glossary-modal" role="dialog" aria-modal="true" aria-labelledby="glossary-title" hidden>
+  <div class="drawer-box">
+    <div class="drawer-head">
+      <h2 class="drawer-title" id="glossary-title">Glossary</h2>
+      <button type="button" class="drawer-close" id="glossary-close" aria-label="Close glossary">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <dl>
+        <div class="glossary-term">
+          <dt>Matter</dt>
+          <dd>Anything that takes up space and has weight.</dd>
+        </div>
+        <div class="glossary-term">
+          <dt>System</dt>
+          <dd>The objects and materials being studied together.</dd>
+        </div>
+        <div class="glossary-term">
+          <dt>Closed system</dt>
+          <dd>A system in which matter cannot enter or leave.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     JOURNAL DRAWER — slides in from the right
+     ========================================================================== -->
+<div class="drawer-overlay drawer-overlay-right" id="journal-modal" role="dialog" aria-modal="true" aria-labelledby="journal-title" hidden>
+  <div class="drawer-box">
+    <div class="drawer-head">
+      <h2 class="drawer-title" id="journal-title">Investigation Journal</h2>
+      <button type="button" class="drawer-close" id="journal-close" aria-label="Close journal">&times;</button>
+    </div>
+    <div class="drawer-body" id="journal-drawer-body"></div>
+    <div class="drawer-footer">
+      <span class="drawer-footer-note">Fills in as you work through the investigation.</span>
+      <button type="button" class="btn btn-primary" id="journal-drawer-export">Export Journal</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     RESTART MODAL — centered, not a drawer
+     ========================================================================== -->
+<div class="modal-overlay" id="restart-modal" role="dialog" aria-modal="true" aria-labelledby="restart-title" hidden>
+  <div class="modal-box">
+    <button type="button" class="modal-close" id="restart-close" aria-label="Cancel restart">&times;</button>
+    <h2 class="modal-title" id="restart-title">Restart this lesson?</h2>
+    <p style="color: var(--muted); margin-bottom: 22px;">This will clear your current decisions, written responses, and journal progress on The Island Water Mystery from this device.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-outline" id="restart-cancel">Keep My Progress</button>
+      <button type="button" class="btn btn-danger" id="restart-confirm">Restart Lesson</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ==========================================================================
+   LOCAL STORAGE HELPERS
+   ========================================================================== */
+const STORAGE_KEY = 'islandWaterMystery_state';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) { /* ignore corrupted state */ }
+  return null;
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) { /* storage unavailable */ }
+}
+
+/* ==========================================================================
+   LESSON STATE
+   ========================================================================== */
+const defaultState = {
+  currentView: 'hook',
+  currentNarrativePage: 0,
+  initialMatterIdea: '',
+  completedNarrativePages: []
+};
+
+// Load any previously saved state. Safely ignore fields from older versions
+// of this lesson so old localStorage data never causes a crash.
+let loaded = loadState();
+let state = Object.assign({}, defaultState, loaded || {});
+if (typeof state.initialMatterIdea !== 'string') {
+  state.initialMatterIdea = '';
+}
+if (!Array.isArray(state.completedNarrativePages)) {
+  state.completedNarrativePages = [];
+}
+// Remove any legacy fields so they don't linger in storage.
+delete state.initialBookPrediction;
+delete state.theoVisibilityPrediction;
+delete state.answeredQuestions;
+delete state.sessionCode;
+
+saveState();
+
+/* ==========================================================================
+   VIEW ORDER / NAVIGATION
+   ========================================================================== */
+const viewOrder = ['hook', 'narrative-1', 'narrative-2', 'narrative-3', 'transition', 'phase2'];
+
+function showView(viewName, opts) {
+  opts = opts || {};
+  viewOrder.forEach(function (name) {
+    const el = document.getElementById('view-' + name);
+    if (!el) return;
+    if (name === viewName) {
+      el.hidden = false;
+      el.classList.add('fade-in');
+    } else {
+      el.hidden = true;
+      el.classList.remove('fade-in');
+    }
+  });
+  state.currentView = viewName;
+  // Header buttons and the tracker stay hidden on the launch/hook screen
+  // and appear once the student moves past it (matches every other
+  // Stories in Science lesson's shell behavior).
+  const isLaunch = viewName === 'hook';
+  document.body.classList.toggle('launch-mode', isLaunch);
+  updateProgressStrip();
+  saveState();
+  if (!opts.skipScroll) {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  const el = document.getElementById('view-' + viewName);
+  if (el) {
+    el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
+  }
+}
+
+/* Tracker stages — JS-rendered to match the individual-card pattern
+   used across every Stories in Science lesson (no hardcoded connector
+   markup in HTML). */
+const TRACKER_STAGES = [
+  { views: ['hook', 'narrative-1', 'narrative-2', 'narrative-3'], label: "The book's claim", value: 'Find what the story left out' },
+  { views: ['transition', 'phase2'],                label: 'Track the matter',      value: 'Follow the evidence' },
+  { views: ['phase3'],                              label: 'Write to the author', value: 'Explain the science' }
+];
+
+function updateProgressStrip() {
+  const currentIndex = TRACKER_STAGES.findIndex(function (s) { return s.views.indexOf(state.currentView) !== -1; });
+  const cur = currentIndex === -1 ? 0 : currentIndex;
+  const html = TRACKER_STAGES.map(function (stage, i) {
+    const status = i < cur ? 'complete' : i === cur ? 'active' : '';
+    const stateWord = i < cur ? 'Completed' : i === cur ? 'Current' : 'Upcoming';
+    const icon = i < cur ? '&#10003;' : (i + 1);
+    return '<div class="progress-stage ' + status + '" aria-label="' + stage.label + ', ' + stateWord + '">' +
+      '<div class="stage-circle">' + icon + '</div>' +
+      '<div class="stage-text">' +
+        '<div class="stage-title">' + stage.label + '</div>' +
+        '<div class="stage-sub">' + stage.value + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('progress-strip').innerHTML = html;
+}
+
+/* ==========================================================================
+   HOOK PAGE — Open the book
+   ========================================================================== */
+document.getElementById('btn-open-book').addEventListener('click', function () {
+  state.currentNarrativePage = 1;
+  showView('narrative-1');
+});
+
+/* ==========================================================================
+   ACCORDION
+   ========================================================================== */
+const accordionTrigger = document.getElementById('accordion-trigger');
+const accordionPanel = document.getElementById('accordion-panel');
+accordionTrigger.addEventListener('click', function () {
+  const expanded = accordionTrigger.getAttribute('aria-expanded') === 'true';
+  accordionTrigger.setAttribute('aria-expanded', String(!expanded));
+  accordionPanel.hidden = expanded;
+});
+
+/* ==========================================================================
+   IMAGE FALLBACK HANDLING
+   ========================================================================== */
+document.querySelectorAll('.lesson-image').forEach(function (img) {
+  img.addEventListener('error', function () {
+    const filename = img.getAttribute('src');
+    const iconChar = img.getAttribute('data-fallback-icon') || '🖼️';
+    const altText = img.getAttribute('alt') || '';
+    const placeholder = document.createElement('div');
+    placeholder.className = 'image-placeholder';
+    placeholder.setAttribute('role', 'img');
+    placeholder.setAttribute('aria-label', altText);
+    placeholder.innerHTML =
+      '<span class="ph-icon" aria-hidden="true">' + iconChar + '</span>' +
+      '<span class="ph-filename">' + filename + '</span>';
+    img.replaceWith(placeholder);
+  }, { once: true });
+});
+
+/* ==========================================================================
+   INTERACTIVE STORYBOOK — auto-resize the iframe to match its own content
+   height, so the Back/Turn Page controls are always visible without an
+   internal scrollbar. The embedded book posts its measured height on load,
+   on every page turn, and on its own resize/font-load events.
+   ========================================================================== */
+const bookInteractiveFrame = document.getElementById('book-interactive-frame');
+window.addEventListener('message', function (e) {
+  if (e && e.data && e.data.source === 'rivera-book' && e.data.type === 'book:resize' && bookInteractiveFrame) {
+    const h = e.data.detail && e.data.detail.height;
+    if (typeof h === 'number' && h > 0) {
+      bookInteractiveFrame.style.height = h + 'px';
+    }
+  }
+});
+
+/* ==========================================================================
+   NARRATIVE BACK / CONTINUE NAVIGATION
+   (Both narrative pages' continue buttons are always enabled — the story
+   carries the inquiry forward with no comprehension gating. Page 2's continue button
+   is gated only by the journal textarea below.)
+   ========================================================================== */
+const narrativeSequence = ['hook', 'narrative-1', 'narrative-2', 'narrative-3', 'transition', 'phase2'];
+
+function goToViewByPageToken(token, direction) {
+  const map = {
+    '1': 'narrative-1',
+    '2': 'narrative-2',
+    '3': 'narrative-3',
+    'transition': 'transition',
+    'phase2': 'phase2'
+  };
+  const currentViewName = map[token];
+  const currentIndex = narrativeSequence.indexOf(currentViewName);
+  const targetIndex = direction === 'back' ? currentIndex - 1 : currentIndex + 1;
+  const targetView = narrativeSequence[targetIndex];
+  if (!targetView) return;
+
+  if (direction === 'forward') {
+    if (!state.completedNarrativePages.includes(currentViewName)) {
+      state.completedNarrativePages.push(currentViewName);
+    }
+  }
+
+  if (targetView.indexOf('narrative-') === 0) {
+    state.currentNarrativePage = parseInt(targetView.split('-')[1], 10);
+  }
+
+  showView(targetView);
+}
+
+document.querySelectorAll('.nav-continue').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    const page = btn.getAttribute('data-page');
+    goToViewByPageToken(page, 'forward');
+  });
+});
+
+document.querySelectorAll('.nav-back').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    const page = btn.getAttribute('data-page');
+    goToViewByPageToken(page, 'back');
+  });
+});
+
+document.getElementById('btn-begin-measuring').addEventListener('click', function () {
+  if (!state.completedNarrativePages.includes('transition')) {
+    state.completedNarrativePages.push('transition');
+  }
+  showView('phase2');
+});
+
+/* ==========================================================================
+   PAGE 5 JOURNAL — open-ended initial idea, autosaved, no grading
+   ========================================================================== */
+const journalTextarea = document.getElementById('journal-initial-idea');
+const joinInvestigationBtn = document.getElementById('btn-join-investigation');
+const savedIndicator = document.getElementById('journal-saved-indicator');
+let savedIndicatorTimeout = null;
+
+function updateJoinButtonState() {
+  // Consistency pass: Continue is never disabled by unwritten text,
+  // matching the "no gating" rule used across every Stories in Science
+  // lesson. Left in place, unused, in case a deliberate reveal-aware
+  // gate is wanted here later.
+}
+
+function showSavedIndicator() {
+  savedIndicator.classList.add('show');
+  window.clearTimeout(savedIndicatorTimeout);
+  savedIndicatorTimeout = window.setTimeout(function () {
+    savedIndicator.classList.remove('show');
+  }, 1800);
+}
+
+journalTextarea.addEventListener('input', function () {
+  state.initialMatterIdea = journalTextarea.value;
+  saveState();
+  updateJoinButtonState();
+  showSavedIndicator();
+});
+
+/* ==========================================================================
+   TOOLBAR — Restart / Export / Glossary / Journal
+   ========================================================================== */
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  window.clearTimeout(showToast._t);
+  showToast._t = window.setTimeout(function () {
+    toast.classList.remove('show');
+  }, 3200);
+}
+
+document.getElementById('btn-export').addEventListener('click', function () {
+  showToast('Your journal will become available after you begin the investigation.');
+});
+
+/* ==========================================================================
+   RESTART MODAL — styled confirm modal, not a native browser confirm()
+   ========================================================================== */
+const restartModal = document.getElementById('restart-modal');
+
+function openRestartModal() {
+  restartModal.hidden = false;
+}
+function closeRestartModal() {
+  restartModal.hidden = true;
+}
+function performRestart() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (e) { /* ignore */ }
+  state = Object.assign({}, defaultState, { initialMatterIdea: '', completedNarrativePages: [] });
+  saveState();
+
+  journalTextarea.value = '';
+  updateJoinButtonState();
+  savedIndicator.classList.remove('show');
+
+  accordionTrigger.setAttribute('aria-expanded', 'false');
+  accordionPanel.hidden = true;
+
+  closeRestartModal();
+  showView('hook');
+  showToast('Lesson progress has been restarted.');
+}
+
+document.getElementById('btn-restart').addEventListener('click', openRestartModal);
+document.getElementById('restart-close').addEventListener('click', closeRestartModal);
+document.getElementById('restart-cancel').addEventListener('click', closeRestartModal);
+document.getElementById('restart-confirm').addEventListener('click', performRestart);
+restartModal.addEventListener('click', function (e) {
+  if (e.target === restartModal) closeRestartModal();
+});
+
+/* ==========================================================================
+   GLOSSARY MODAL BEHAVIOR
+   ========================================================================== */
+const glossaryModal = document.getElementById('glossary-modal');
+const glossaryBtn = document.getElementById('btn-glossary');
+const glossaryCloseBtn = document.getElementById('glossary-close');
+let lastFocusedBeforeModal = null;
+
+function openGlossary() {
+  lastFocusedBeforeModal = document.activeElement;
+  glossaryModal.hidden = false;
+  requestAnimationFrame(function () { glossaryModal.classList.add('open'); });
+  glossaryCloseBtn.focus();
+  document.addEventListener('keydown', handleModalKeydown);
+}
+
+function closeGlossary() {
+  glossaryModal.classList.remove('open');
+  glossaryModal.hidden = true;
+  document.removeEventListener('keydown', handleModalKeydown);
+  if (lastFocusedBeforeModal) lastFocusedBeforeModal.focus();
+}
+
+function handleModalKeydown(e) {
+  if (e.key === 'Escape') {
+    closeGlossary();
+    return;
+  }
+  if (e.key === 'Tab') {
+    const focusable = glossaryModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+}
+
+glossaryBtn.addEventListener('click', openGlossary);
+glossaryCloseBtn.addEventListener('click', closeGlossary);
+glossaryModal.addEventListener('click', function (e) {
+  if (e.target === glossaryModal) closeGlossary();
+});
+
+/* ==========================================================================
+   JOURNAL DRAWER — slides in from the right. Summarizes saved responses;
+   grows as more journal prompts are added later in the build.
+   ========================================================================== */
+const journalModal = document.getElementById('journal-modal');
+const journalBtn = document.getElementById('btn-journal');
+const journalCloseBtn = document.getElementById('journal-close');
+
+function renderJournalDrawer() {
+  const body = document.getElementById('journal-drawer-body');
+  const idea = (state.initialMatterIdea || '').trim();
+  if (!idea) {
+    body.innerHTML = '<p style="color: var(--muted); font-style: italic;">Your journal will fill in as you make decisions, examine evidence, and write responses.</p>';
+    return;
+  }
+  body.innerHTML =
+    '<div style="margin-bottom: 16px;">' +
+      '<div style="font-weight: 800; font-size: 0.7rem; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">My first idea</div>' +
+      '<p style="margin: 0; white-space: pre-wrap;">' + idea.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</p>' +
+    '</div>';
+}
+
+function openJournal() {
+  renderJournalDrawer();
+  journalModal.hidden = false;
+  requestAnimationFrame(function () { journalModal.classList.add('open'); });
+}
+function closeJournal() {
+  journalModal.classList.remove('open');
+  journalModal.hidden = true;
+}
+
+journalBtn.addEventListener('click', openJournal);
+journalCloseBtn.addEventListener('click', closeJournal);
+journalModal.addEventListener('click', function (e) {
+  if (e.target === journalModal) closeJournal();
+});
+document.getElementById('journal-drawer-export').addEventListener('click', function () {
+  showToast('Your journal will become available after you begin the investigation.');
+});
+
+/* ==========================================================================
+   RESTORE UI FROM SAVED STATE ON LOAD
+   ========================================================================== */
+(function restoreUIFromState() {
+  if (state.initialMatterIdea) {
+    journalTextarea.value = state.initialMatterIdea;
+  }
+  updateJoinButtonState();
+
+  // Restore last view without forcing scroll jump on initial paint
+  showView(state.currentView || 'hook', { skipScroll: true });
+})();
+</script>
+</body>
+</html>
