@@ -1,1 +1,884 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Island Water Mystery | Stories in Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   GLOBAL STYLES
+   ========================================================================== */
+:root {
+  --ocean-deep: #17324D;
+  --lagoon: #287F83;
+  --lagoon-dark: #1E6468;
+  --sea-glass: #BFE3DE;
+  --sea-glass-light: #E8F4F1;
+  --sunlight: #F2B84B;
+  --sunlight-dark: #D99B25;
+  --coral: #DF765E;
+  --sand: #F5E9D6;
+  --sand-light: #FBF5EA;
+  --foam: #FFFDF8;
+  --ink: #263746;
+  --muted: #667784;
+  --border: #D5DEDF;
+  --success: #4F875E;
+  --error: #B54E4E;
+  --disabled: #A9B2B8;
+
+  --content-width: 900px;
+  --shell-width: 1400px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 4px 14px rgba(23, 50, 77, 0.08);
+  --shadow-card: 0 8px 28px rgba(23, 50, 77, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 18px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--sea-glass-light);
+  color: var(--ink);
+  font-family: 'Figtree', sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, .display-font {
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 400;
+  color: var(--ocean-deep);
+  margin: 0;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+p { margin: 0 0 1em 0; line-height: 1.6; }
+p:last-child { margin-bottom: 0; }
+
+img, svg { max-width: 100%; display: block; }
+
+button {
+  font-family: 'Figtree', sans-serif;
+  cursor: pointer;
+}
+
+a { color: var(--lagoon-dark); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ocean-deep);
+  color: var(--foam);
+  padding: 12px 18px;
+  border-radius: 0 0 10px 0;
+  z-index: 500;
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sunlight-dark);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Wider container for the header and tracker only — matches the
+   Stories in Science shell convention (header/tracker run wider than
+   the reading column). */
+.wrap-shell {
+  width: 100%;
+  max-width: var(--shell-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   LESSON SHELL / HEADER
+   ========================================================================== */
+.lesson-header {
+  background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--lagoon) 100%);
+  border-bottom: 3px solid var(--sunlight);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 2px 12px rgba(0,0,0,.18);
+}
+
+.header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 0 16px 0;
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.series-pill {
+  background: var(--sunlight);
+  color: var(--ocean-deep);
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  padding: 7px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.identity-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.identity-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,.78);
+}
+
+.identity-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 1.15rem;
+  color: var(--foam);
+  line-height: 1.25;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.32);
+  color: var(--foam);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 13px;
+  border-radius: 999px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+button.toolbar-item:hover {
+  background: rgba(255,255,255,.24);
+}
+
+.toolbar-item-danger {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--foam);
+}
+button.toolbar-item-danger:hover {
+  background: #c9634c;
+  border-color: #c9634c;
+}
+
+/* Header stays visible from the launch screen; only its buttons and the
+   tracker hide until the student leaves the launch page. */
+body.launch-mode .toolbar,
+body.launch-mode #progress-strip { display: none; }
+
+/* ==========================================================================
+   PROGRESS STRIP
+   ========================================================================== */
+.progress-strip {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 12px auto 14px auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+}
+
+.progress-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+  background: var(--foam);
+  border: 2px solid var(--border);
+  border-radius: 11px;
+  padding: 8px 9px;
+}
+
+.progress-stage.active {
+  border-color: var(--sunlight-dark);
+  background: #fff8ea;
+}
+
+.progress-connector { display: none; }
+
+.stage-circle {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--sea-glass-light);
+  border: none;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.76rem;
+}
+
+.progress-stage.active .stage-circle {
+  background: var(--sunlight);
+  border-color: var(--sunlight-dark);
+  color: var(--ocean-deep);
+}
+
+.progress-stage.complete .stage-circle {
+  background: var(--lagoon);
+  border-color: var(--lagoon-dark);
+  color: var(--foam);
+}
+
+.stage-text { min-width: 0; }
+
+.stage-title {
+  font-weight: 800;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: var(--ocean-deep);
+}
+
+.progress-stage:not(.active):not(.complete) .stage-title {
+  color: var(--muted);
+}
+
+.stage-sub {
+  font-size: 0.68rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   MAIN VIEW CONTAINER
+   ========================================================================== */
+main {
+  flex: 1;
+  width: 100%;
+}
+
+.view {
+  padding: 28px 0 40px 0;
+}
+
+.view[hidden] { display: none !important; }
+
+.fade-in {
+  animation: fadeSlideIn 0.4s ease both;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   HOOK PAGE
+   ========================================================================== */
+.hook-card {
+  background: linear-gradient(135deg, #17324D 0%, #287F83 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  color: var(--foam);
+  padding: 34px 36px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.hook-media {
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  margin-bottom: 6px;
+}
+
+.hook-media .lesson-image,
+.hook-media .image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.hook-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.hook-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--sea-glass);
+  text-transform: uppercase;
+}
+
+.hook-title {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: clamp(1.9rem, 3.8vw, 2.6rem);
+  color: var(--foam);
+  line-height: 1.15;
+}
+
+.hook-subtitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sunlight);
+  margin-top: -6px;
+}
+
+.hook-sub {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: var(--sea-glass-light);
+  max-width: 52ch;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 14px 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  min-height: 48px;
+}
+
+.btn-primary {
+  background: var(--sunlight);
+  color: var(--ocean-deep);
+  box-shadow: 0 3px 0 var(--sunlight-dark);
+}
+.btn-primary:hover:not(:disabled) {
+  background: #f4c463;
+  transform: translateY(-1px);
+}
+.btn-primary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--sunlight-dark);
+}
+
+.btn-outline {
+  background: var(--foam);
+  border: 2px solid var(--border);
+  color: var(--ink);
+}
+.btn-outline:hover { border-color: var(--lagoon); }
+
+.btn-danger {
+  background: var(--error);
+  color: var(--foam);
+}
+.btn-danger:hover { background: #9c3f3f; }
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   DRAWERS — Glossary (left) and Journal (right). Slide-in panels, distinct
+   from the centered Restart modal above.
+   ========================================================================== */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 50, 77, 0.45);
+  z-index: 110;
+  display: none;
+  align-items: stretch;
+}
+.drawer-overlay.open { display: flex; }
+.drawer-overlay-left { justify-content: flex-start; }
+.drawer-overlay-right { justify-content: flex-end; }
+.drawer-overlay[hidden] { display: none !important; }
+
+.drawer-box {
+  width: min(420px, 92vw);
+  background: var(--foam);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  animation: drawer-in-left 0.2s ease;
+}
+.drawer-overlay-right .drawer-box { animation-name: drawer-in-right; }
+@keyframes drawer-in-left { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@keyframes drawer-in-right { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--lagoon);
+  color: var(--foam);
+}
+.drawer-title { margin: 0; font-size: 1.15rem; }
+.drawer-close {
+  background: rgba(255,255,255,.18);
+  border: none;
+  color: var(--foam);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.drawer-close:hover { background: rgba(255,255,255,.3); }
+.drawer-body { padding: 18px 20px; overflow-y: auto; flex: 1; }
+.drawer-body .glossary-term:first-of-type { border-top: none; padding-top: 0; }
+.drawer-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.drawer-footer-note { font-size: 0.8rem; color: var(--muted); }
+
+@media (max-width: 480px) {
+  .drawer-box { width: 100vw; }
+}
+.btn-primary:disabled {
+  background: var(--disabled);
+  color: var(--foam);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--foam);
+  color: var(--ocean-deep);
+  border: 2px solid var(--border);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--sea-glass-light);
+  border-color: var(--lagoon);
+}
+
+.hook-cta { margin-top: 10px; }
+
+/* ==========================================================================
+   ACCORDION — LEARNING OBJECTIVES
+   ========================================================================== */
+.accordion {
+  margin-top: 22px;
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.accordion-trigger {
+  width: 100%;
+  background: var(--foam);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--ocean-deep);
+  text-align: left;
+}
+.accordion-trigger:hover { background: var(--sea-glass-light); }
+
+.accordion-icon {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--sea-glass-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  font-size: 0.9rem;
+  color: var(--lagoon-dark);
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-panel {
+  padding: 0 22px 22px 22px;
+  display: grid;
+  gap: 16px;
+}
+
+.accordion-panel[hidden] { display: none; }
+
+/* --------------------------------------------------------------------------
+   ALIGNMENT PANEL — teacher-facing objectives, standards, and framework
+   alignment, presented as scannable cards rather than stacked paragraphs.
+   -------------------------------------------------------------------------- */
+.alignment-summary {
+  margin: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.alignment-label {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lagoon-dark);
+  margin: 0 0 10px 0;
+}
+
+.objective-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.objective-card {
+  background: var(--sea-glass-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px 16px 16px;
+}
+
+.objective-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--ocean-deep);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.objective-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.standards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.standards-card {
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px 16px 16px;
+}
+
+.standards-card-title {
+  margin: 0 0 8px 0;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ocean-deep);
+  line-height: 1.4;
+}
+
+.standards-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.framework-callout {
+  background: var(--sand-light);
+  border-left: 4px solid var(--sunlight);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px 16px 18px;
+}
+
+.framework-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sunlight-dark);
+  margin-bottom: 8px;
+}
+
+.framework-callout p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.standard-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  background: var(--sand-light);
+  border: 1px solid var(--sunlight-dark);
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.goal-list {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.7;
+}
+.goal-list li { margin-bottom: 4px; }
+
+.boundary-note {
+  background: var(--sea-glass-light);
+  border-left: 3px solid var(--lagoon);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.lesson-footer {
+  padding: 30px 0 40px 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   NARRATIVE PAGES
+   ========================================================================== */
+.narrative-page {
+  background: var(--foam);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 34px 38px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.narrative-page.image-right {
+  flex-direction: row-reverse;
+}
+
+/* The "Start with the evidence" page keeps its image top-aligned with just a
+   small downward nudge rather than full vertical centering (its text column
+   runs noticeably longer than the image, so centering pulled it too far down). */
+#view-narrative-2 .narrative-page {
+  align-items: flex-start;
+}
+
+#view-narrative-2 .narrative-media {
+  margin-top: 22px;
+}
+
+.narrative-media {
+  flex: 0 0 auto;
+  width: 200px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: var(--sea-glass-light);
+}
+
+.narrative-media .lesson-image,
+.narrative-media .image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.narrative-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.narrative-heading {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+}
+
+.narrative-text {
+  color: var(--ink);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.book-excerpt {
+  background: var(--sand-light);
+  border: 1px solid var(--sunlight-dark);
+  border-left: 5px solid var(--sunlight);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  font-size: 1rem;
+  color: var(--ink);
+  position: relative;
+}
+
+.book-excerpt::before {
+  content: "From the book";
+  display: block;
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 0.78rem;
+  color: var(--sunlight-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.book-excerpt p {
+  font-style: italic;
+}
+
+/* ==========================================================================
+   DIALOGUE LINES — gives spoken lines clearer rhythm and separation from
+   plain narration without printed speaker-name labels. Two alternating
+   treatments (d-1 / d-2) are applied by hand to each quoted paragraph so
+   back-and-forth exchanges read with a visual back-and-forth of their own.
+   ========================================================================== */
+.narrative-text p.dialogue {
+  margin: 0.9em 0;
+  padding: 8px 8px 8px 18px;
+  border-left: 3px solid var(--sea-glass);
+  font-weight: 600;
+}
+
+.narrative-text p.dialogue.d-2 {
+  margin-left: 22px;
+  border-left-color: var(--sunlight);
+}
+
+@media (max-width: 560px) {
+  .narrative-text p.dialogue.d-2 {
+    margin-left: 10px;
+  }
+}
+
+/* ==========================================================================
+   STANDOUT LINE — reserved for the one punch-beat per page that should
+   land differently from the surrounding prose (a realization, a turn).
+   Used sparingly, never as a substitute for narrative pacing.
+   ========================================================================== */
+.standout-line {
+  background: var(--sea-glass-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
